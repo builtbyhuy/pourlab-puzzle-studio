@@ -18,6 +18,8 @@ State, depth and elapsed-time limits are separate from mathematical impossibilit
 
 **Drafts can be useful before they are solvable.** Import and save accept structurally valid but unbalanced inventories. Play and search require balanced inventories. Library import validates the whole payload before storage mutation; unknown fields and unsupported versions are rejected. Imported names are literal text. All destructive library actions require confirmation, and JSON backup is always available independently of local storage.
 
+**An error message is not data protection.** A later recovery audit found that an unreadable stored library could be replaced by the next save, despite an initial warning. The repair locks writes, preserves the original raw text for download and requires a separate confirmed reset. Failed draft saves stay visible instead of disappearing into a catch block. Nine regressions execute the production storage functions, and real-browser checks verify backup bytes, recovery controls, mobile rendering and normal save/reload/search. [Recorded scope and limits](evidence/STORAGE-RECOVERY-QA.md).
+
 ## Verification design
 
 The production solvers do not certify themselves. A separate labeled-bottle BFS oracle implements its own transitions without canonicalization or the production heuristic. Both algorithms are checked against it on exhaustive small layouts and novel deterministic layouts. Every shown solution is replayed twice: once by the worker engine and once by the main thread. Tests also cover zero-move completion, trapped levels, color conservation, illegal pours, mutation boundaries, budget outcomes and malicious-name roundtrips.

@@ -2,7 +2,7 @@
 
 [Use the online studio](https://pourlab-huy.hokhachuy1234.chatgpt.site) · [Guide & case study](https://pourlab-huy.hokhachuy1234.chatgpt.site/about.html) · [Detailed engineering case study](docs/CASE-STUDY.md)
 
-A usable water-sort puzzle workbench: build your own levels, play them, and inspect a shortest checked solution. Runs entirely in your browser with no account, backend, upload, tracking or build step. The studio uses native browser APIs and locally hosted open-source fonts; it has no active third-party JavaScript runtime dependency.
+A usable water-sort puzzle workbench: build your own levels, play them, and inspect a shortest checked solution. The application runs entirely in your browser with no account, application backend, level upload, analytics SDK or build step. It uses native browser APIs and locally hosted open-source fonts, with no third-party JavaScript runtime dependency in its application code. The hosting provider still receives page/resource requests and can add security checks.
 
 This independent project was built with AI coding assistance. It uses **classical search**, not machine learning or reinforcement learning. The included study is synthetic; no player research, studio adoption, commercial results or human difficulty prediction is claimed.
 
@@ -50,6 +50,8 @@ node --test tests/*.test.js
 
 Tests compare both exact solvers with a separately implemented **labeled-bottle BFS oracle**, including exhaustive small arrangements and deterministic novel levels. They also check maximal-pour rules, immutable transitions, legal replay, conservation of inventory, strict input boundaries, unresolved budgets and portable JSON/link roundtrips. Browser rendering, actual worker startup, storage and keyboard flows require browser acceptance in addition to these unit tests.
 
+The current suite has **17 checks**: eight rule/portability checks and nine storage regressions executing the production storage functions with controlled DOM, storage and confirmation boundaries. The latter protect unreadable original libraries, failed reads/writes, reset confirmation and stale-tab changes. [Recovery fix and actual-browser evidence](docs/evidence/STORAGE-RECOVERY-QA.md).
+
 Actual browser checks on 21 October 2026 used a novel three-color level: A* found a seven-pour solution after visiting 48 states; BFS found the same optimum after visiting 93 states. The browser replay reached step 7/7. Named save/reload, an illegal-pour error, Undo and a one-state budget reported as unresolved were also checked. These observations cover those flows, not a complete accessibility or user-acceptance study.
 
 [Desktop worker/replay evidence](docs/evidence/desktop-solver.jpg) · [Mobile evidence](docs/evidence/mobile-solver.jpg)
@@ -86,6 +88,8 @@ A* uses an admissible color-segment heuristic. BFS is an exact shortest-path bas
 ## Storage and privacy
 
 Named levels and a recovery draft use `localStorage` in the current browser origin. They do not sync across devices and may be removed by the browser. The app reports failed named saves, provides JSON backups and confirms deletion. A copied URL includes the level and its name in the hash; anyone with the link can open it. This app sends no level data to a server. Shared-link names and imported strings are rendered through text nodes, never HTML.
+
+An unreadable saved library is protected against further writes. **My levels** offers its exact original raw text for download; resetting requires requesting that backup and a separate confirmation. A failed reset keeps the original. Draft-write failures remain visible with an export action. A changed-library check also refuses stale writes after another tab has updated the library; it is a guard, not an atomic cross-tab transaction.
 
 ## Architecture
 

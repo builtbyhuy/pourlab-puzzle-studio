@@ -9,26 +9,91 @@ let draft = clone(initial), name = 'Four-color study', mode = 'edit', paint = 0,
 let game = clone(draft), history = [], moves = [], frames = [], step = 0, timer = null;
 let worker = null, job = 0, revision = 0, dirty = false, currentId = null, noticeTimer;
 let saved = [], editorHistory = [], comparisons = {}, searchStatus = 'ready';
+let libraryLock = null, libraryRaw = null, libraryError = '', draftError = '';
 const el = (tag, cls, text) => { const node = document.createElement(tag); if (cls) node.className = cls; if (text !== undefined) node.textContent = text; return node; };
 const liquid = (node, color) => node.style.setProperty('--liquid', `var(--c${color})`);
 const tell = message => { $('notice').textContent = message; $('notice').hidden = false; clearTimeout(noticeTimer); noticeTimer = setTimeout(() => $('notice').hidden = true, 5500); };
+function updateStorageWarning() {
+  const messages = [];
+  if (libraryLock) messages.push(libraryLock.kind === 'unreadable'
+    ? 'Your saved library needs recovery. Changes are blocked to protect the original data. Open My levels to download it.'
+    : libraryLock.kind === 'changed' ? 'Your saved library changed in another tab. Reload before saving; export your current level first.'
+      : 'Browser storage could not be read. Library changes are blocked. Restore storage access and reload.');
+  if (libraryError) messages.push(libraryError);
+  if (draftError) messages.push(draftError);
+  const warning = $('storage-warning'), text = $('storage-warning-text'), message = messages.join(' ');
+  // A persistent status replaces repeated toasts on every keystroke.
+  if (text.textContent !== message) text.textContent = message;
+  warning.hidden = !message;
+}
+function readLibrary(raw) {
+  const parsed = JSON.parse(raw);
+  if (!Array.isArray(parsed) || parsed.length > 50) throw new Error('Invalid saved library.');
+  const ids = new Set();
+  return parsed.map(x => {
+    if (!x || typeof x.id !== 'string' || !x.id || ids.has(x.id)) throw new Error('Invalid saved level identity.');
+    ids.add(x.id);
+    return { id: x.id, updated: Number(x.updated) || 0, ...normalizeLevel({ name: x.name, capacity: x.capacity, bottles: x.bottles }) };
+  });
+}
 function storeDraft() {
-  try { localStorage.setItem(RECOVERY, JSON.stringify({ ...packLevel(draft, name || 'Untitled study'), currentId, dirty })); } catch { /* A blocked draft store never prevents editing. */ }
+  try { localStorage.setItem(RECOVERY, JSON.stringify({ ...packLevel(draft, name.trim() || 'Untitled study'), currentId, dirty })); draftError = ''; }
+  catch { draftError = 'Draft recovery could not be saved. Keep this tab open and export your level before closing.'; }
+  updateStorageWarning();
 }
 function persistLibrary(next = saved) {
-  try { localStorage.setItem(STORE, JSON.stringify(next)); saved = next; $('saved-count').textContent = saved.length; return true; }
-  catch { tell('Browser storage is unavailable or full. Export JSON to keep your work.'); return false; }
+  if (libraryLock) { updateStorageWarning(); return false; }
+  try {
+    const current = localStorage.getItem(STORE);
+    if (current !== libraryRaw) {
+      libraryLock = { raw: current, kind: 'changed', backupRequested: false };
+      updateStorageWarning(); return false;
+    }
+    const raw = JSON.stringify(next);
+    readLibrary(raw);
+    localStorage.setItem(STORE, raw);
+    libraryRaw = raw; saved = next; libraryError = '';
+    $('saved-count').textContent = saved.length; updateStorageWarning(); return true;
+  } catch {
+    libraryError = 'Level not saved: browser storage is unavailable or full. Export your current level to keep it.';
+    updateStorageWarning(); return false;
+  }
 }
 function loadStorage() {
+  let raw = null;
   try {
-    const raw = localStorage.getItem(STORE);
-    if (raw) { const parsed = JSON.parse(raw); if (!Array.isArray(parsed) || parsed.length > 50) throw new Error(); saved = parsed.map(x => ({ id: String(x.id), updated: Number(x.updated) || 0, ...normalizeLevel({ name: x.name, capacity: x.capacity, bottles: x.bottles }) })); }
-  } catch { tell('Saved levels could not be read. Your browser data has not been overwritten.'); }
+    raw = localStorage.getItem(STORE); libraryRaw = raw;
+    saved = raw === null ? [] : readLibrary(raw);
+  } catch { libraryLock = { raw, kind: raw === null ? 'access' : 'unreadable', backupRequested: false }; }
   try {
     const raw = localStorage.getItem(RECOVERY);
     if (raw) { const parsed = JSON.parse(raw); const item = normalizeLevel({ name: parsed.name, capacity: parsed.capacity, bottles: parsed.bottles }); draft = clone(item); name = item.name; currentId = typeof parsed.currentId === 'string' ? parsed.currentId : null; dirty = parsed.dirty !== false; }
-  } catch { /* A malformed recovery record does not change the sample. */ }
+  } catch { draftError = 'Draft recovery could not be read. The current level is still usable; export it to keep your work.'; }
   $('saved-count').textContent = saved.length;
+  updateStorageWarning();
+}
+function downloadOriginalLibrary() {
+  if (typeof libraryLock?.raw !== 'string') return false;
+  downloadText(libraryLock.raw, 'pourlab-original-library.txt', 'text/plain;charset=utf-8');
+  libraryLock.backupRequested = true;
+  return true;
+}
+function resetProtectedLibrary() {
+  if (libraryLock?.kind !== 'unreadable' || !libraryLock.backupRequested) return false;
+  if (!window.confirm('Have you kept the original raw backup? Resetting removes the unreadable saved library from this browser. Your current level stays open. Cancel if the download did not finish.')) return false;
+  try {
+    if (localStorage.getItem(STORE) !== libraryLock.raw) {
+      libraryLock.kind = 'changed'; libraryLock.backupRequested = false;
+      updateStorageWarning(); return false;
+    }
+    localStorage.removeItem(STORE);
+    saved = []; libraryRaw = null; libraryLock = null; libraryError = '';
+    currentId = null; dirty = true; $('saved-count').textContent = '0';
+    storeDraft(); return true;
+  } catch {
+    libraryError = 'The library could not be reset. Its original data is still protected. Restore storage access and try again.';
+    updateStorageWarning(); return false;
+  }
 }
 function stopPlayback() { clearInterval(timer); timer = null; $('autoplay').textContent = 'Play solution'; }
 function stopSearch(announce = false) {
@@ -192,6 +257,7 @@ function solveDraft() {
 }
 
 function saveLevel() {
+  if (libraryLock) { renderLibrary(); $('library-dialog').showModal(); return; }
   name = $('level-name').value.trim();
   try { normalizeLevel({ name, ...draft }); } catch (error) { tell(error.message); $('level-name').focus(); return; }
   if (!currentId && saved.length >= 50) { tell('This library has 50 levels. Export a backup, then delete a level to make room.'); return; }
@@ -201,7 +267,16 @@ function saveLevel() {
 }
 function renderLibrary() {
   const list = $('library-list'); list.replaceChildren();
-  if (!saved.length) list.append(el('p', 'library-empty', 'Your shelf is empty. Save a level from the workbench to keep it here.'));
+  const recovery = $('library-recovery'); recovery.hidden = !libraryLock;
+  if (libraryLock) {
+    $('library-recovery-text').textContent = libraryLock.kind === 'unreadable'
+      ? 'Saved data could not be read. The original is protected and library changes are blocked. Download the original raw text and keep it somewhere safe before resetting. Your current level can still be exported.'
+      : libraryLock.kind === 'changed' ? 'Another tab changed the saved library. Export your current level, then reload to read the latest library. Reset is unavailable for this conflict.'
+        : 'This browser is blocking access to saved data. Restore storage access and reload. Reset is unavailable while the original cannot be read.';
+    $('download-original-library').disabled = typeof libraryLock.raw !== 'string';
+    $('reset-library').disabled = libraryLock.kind !== 'unreadable' || !libraryLock.backupRequested;
+  }
+  if (!saved.length && !libraryLock) list.append(el('p', 'library-empty', 'Your shelf is empty. Save a level from the workbench to keep it here.'));
   for (const item of saved) {
     const row = el('div', 'saved-item'), info = el('div');
     info.append(el('strong', '', item.name), el('p', 'muted', `${item.bottles.length} bottles · capacity ${item.capacity} · ${validateLevel(item).valid ? 'balanced' : 'draft inventory'}`));
@@ -214,7 +289,10 @@ function renderLibrary() {
   $('export-library').disabled = !saved.length;
 }
 function download(data, filename) {
-  const url = URL.createObjectURL(new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' }));
+  downloadText(JSON.stringify(data, null, 2), filename, 'application/json');
+}
+function downloadText(text, filename, type) {
+  const url = URL.createObjectURL(new Blob([text], { type }));
   const link = el('a'); link.href = url; link.download = filename; document.body.append(link); link.click(); link.remove(); setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 function importText(text) {
@@ -222,6 +300,7 @@ function importText(text) {
   try {
     const parsed = parsePortable(text);
     if (parsed.type === 'library') {
+      if (libraryLock) throw new Error('Your saved library is protected. Open My levels to recover it before importing a library. You can still import a single level into the editor.');
       if (saved.length + parsed.levels.length > 50) throw new Error('This import would exceed 50 saved levels. Export and remove some existing levels first.');
       const imported = parsed.levels.map(level => ({ id: crypto.randomUUID(), updated: Date.now(), ...level }));
       if (!persistLibrary([...imported, ...saved])) return;
@@ -262,11 +341,15 @@ $('autoplay').onclick = () => {
 $('generate-form').onsubmit = event => { event.preventDefault(); if (!safeReplace()) return; const seed = $('seed').value.trim() || 'little-chaos'; const colors = +$('colors').value; setLevel(generateLevel(seed, colors, draft.capacity, 2), `Shuffle · ${seed}`.slice(0, 60)); tell('Repeatable shuffle created. Its inventory is balanced; use search to check solvability.'); };
 $('blank').onclick = () => { if (safeReplace()) setLevel({ capacity: draft.capacity, bottles: [[], [], [], []] }, 'Untitled study'); };
 $('library-open').onclick = () => { renderLibrary(); $('library-dialog').showModal(); };
+$('storage-open-library').onclick = $('library-open').onclick;
+$('download-original-library').onclick = () => { try { if (downloadOriginalLibrary()) renderLibrary(); } catch { tell('The original backup could not be downloaded. The saved library is still protected.'); } };
+$('reset-library').onclick = () => { if (resetProtectedLibrary()) { render(); tell('Saved library reset. Your current level remains open and can be saved.'); } renderLibrary(); };
 $('portable-open').onclick = () => { $('import-error').textContent = ''; $('portable-dialog').showModal(); };
 $('help-open').onclick = () => $('help-dialog').showModal();
 document.querySelectorAll('[data-close]').forEach(button => button.onclick = () => button.closest('dialog').close());
 document.querySelectorAll('dialog').forEach(dialog => dialog.addEventListener('click', event => { if (event.target === dialog) { const r = dialog.getBoundingClientRect(); if (event.clientX < r.left || event.clientX > r.right || event.clientY < r.top || event.clientY > r.bottom) dialog.close(); } }));
 $('export-level').onclick = () => { try { download(packLevel(draft, name), 'pourlab-level.json'); } catch (error) { tell(error.message); } };
+$('storage-export-level').onclick = $('export-level').onclick;
 $('export-library').onclick = () => { download({ format: 'pourlab-library', version: 1, levels: saved.map(({ name, capacity, bottles }) => ({ name, capacity, bottles })) }, 'pourlab-library.json'); };
 $('import-paste').onclick = () => importText($('import-json').value);
 $('import-file').onchange = async event => { const file = event.target.files[0]; if (!file) return; if (file.size > 300000) { $('import-error').textContent = 'JSON must be smaller than 300 KB.'; return; } try { importText(await file.text()); } catch { $('import-error').textContent = 'That file could not be read. Choose a JSON file again.'; } };
