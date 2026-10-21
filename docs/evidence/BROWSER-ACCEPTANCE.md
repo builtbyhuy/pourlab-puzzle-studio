@@ -1,6 +1,6 @@
 # PourLab browser acceptance — 21 October 2026
 
-Synthetic QA performed by the root agent through CUA against the local build and the deployed public product. The independent reviewer inspected the retained mobile screenshot and recorded root's public-browser observations below. These are product checks, not player adoption, demand, commercial value or human-difficulty validation.
+Synthetic QA performed by the root Codex agent through CUA against the local build and the deployed public product. A separate Codex-agent reviewer inspected the retained mobile screenshot and recorded the root agent's public-browser observations below. These are AI-assisted product checks, not an unaffiliated human review, player adoption, demand, commercial value or human-difficulty validation.
 
 ## Public v1 release
 
