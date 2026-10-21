@@ -1,0 +1,9 @@
+node_modules/
+.DS_Store
+Thumbs.db
+*.log
+.openai/*
+!.openai/hosting.json
+.venv/
+__pycache__/
+test-results/
