@@ -11,3 +11,5 @@ jobs:
         with:
           node-version: '22'
       - run: node --test tests/*.test.js
+      - name: Verify fixed solver corpus and independent reference
+        run: node scripts/evaluate-solver.mjs --check

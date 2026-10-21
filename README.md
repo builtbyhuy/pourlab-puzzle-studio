@@ -14,11 +14,15 @@ The current interface is a game-first puzzle instrument: a deep violet stage, Ba
 
 [Mobile redesign](docs/evidence/cosmos-mobile.jpg) · [Current redesign browser checks](docs/evidence/COSMOS-REDESIGN-QA.md) · [Design decisions](docs/DESIGN.md) · [Artwork and font provenance](dist/assets/SOURCES.md)
 
+## Start with a complete loop
+
+Import the [three-color reviewer level](dist/assets/reviewer-level.json), try a legal move and Undo, then analyze its original arrangement. The recorded browser run reaches four shortest checked pours and replay 4/4. A one-state budget must remain unresolved; an unbalanced edit must disable Play/search until repaired. [Current replay](docs/evidence/cosmos-solved-desktop.png) · [Recovery repair](docs/evidence/STORAGE-RECOVERY-QA.md).
+
+For the engineering comparison, [40 fixed configurations across 34 layouts](docs/SOLVER-EVALUATION.md) run both A* and BFS, check every solved path independently and expose the effect of search budgets. Run `node scripts/evaluate-solver.mjs --check`; independent optimum coverage and timing limits are explicit in the report.
+
 ## Try the whole workflow
 
-The active product has no decorative 3D hero. Short mode transitions, source selection and an interruptible trace explain actual legal pours and adjacent replay steps. Game state updates immediately; motion does not simulate fluid physics. The visible Motion control disables interactive feedback, and reduced-motion visitors start with it off. The earlier Three.js engine and its recordings remain historical artifacts, not the current studio. See [current design decisions](docs/DESIGN.md).
-
-[Historical glass-hero recording](docs/evidence/motion.gif) — retained from the superseded presentation.
+Short mode transitions, source selection and an interruptible trace explain actual legal pours and adjacent replay steps. Game state updates immediately. The visible Motion control disables interactive feedback, and reduced-motion visitors start with it off. See [current design decisions](docs/DESIGN.md).
 
 1. Paint a slot in **Create** mode, from the bottom upward. Every color also has a number.
 2. Balance each used color to a multiple of the bottle capacity; add empty bottles if needed.
@@ -52,13 +56,22 @@ Tests compare both exact solvers with a separately implemented **labeled-bottle 
 
 The current suite has **17 checks**: eight rule/portability checks and nine storage regressions executing the production storage functions with controlled DOM, storage and confirmation boundaries. The latter protect unreadable original libraries, failed reads/writes, reset confirmation and stale-tab changes. [Recovery fix and actual-browser evidence](docs/evidence/STORAGE-RECOVERY-QA.md).
 
-Actual browser checks on 21 October 2026 used a novel three-color level: A* found a seven-pour solution after visiting 48 states; BFS found the same optimum after visiting 93 states. The browser replay reached step 7/7. Named save/reload, an illegal-pour error, Undo and a one-state budget reported as unresolved were also checked. These observations cover those flows, not a complete accessibility or user-acceptance study.
+Current browser evidence covers the four-pour loop above, illegal play/Undo, edit invalidation, named save/reload and mobile rendering. The recovery follow-through also verified exact original backup bytes, visible storage failure feedback and a separate newly imported level saved, reloaded and solved. The [recorded scopes](docs/evidence/STORAGE-RECOVERY-QA.md) remain distinct from automated checks and human usability acceptance.
+
+<details>
+<summary>Earlier browser and motion evidence</summary>
+
+An earlier three-color level produced a seven-pour solution: A* visited 48 states and BFS 93, with replay to 7/7. This is historical browser evidence, separate from the current frozen-corpus measurement.
 
 [Desktop worker/replay evidence](docs/evidence/desktop-solver.jpg) · [Mobile evidence](docs/evidence/mobile-solver.jpg)
 
 The worker/replay images above record the original release. The current visual design appears in the studio image near the top of this README.
 
 The earlier white/glass interface was also checked in a real browser on 21 October 2026: custom JSON import, a seven-pour A* result, keyboard replay to 7/7, a legal manual pour and Undo, erase/repair inventory validation, named save and the library dialog. Both the studio and case-study page were inspected at a 390px viewport with no horizontal document overflow. All eight core/portability tests passed. These historical observations are not acceptance of the later instrument redesign, a user study or a complete accessibility audit.
+
+[Historical glass-hero recording](docs/evidence/motion.gif) and retained Three.js files describe the superseded presentation. They are not loaded by the current studio; current feedback does not simulate fluid physics.
+
+</details>
 
 ## Rule and data contract
 

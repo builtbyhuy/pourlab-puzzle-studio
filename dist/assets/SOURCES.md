@@ -36,3 +36,7 @@ An original AI-generated decorative sculpture produced with the built-in image g
 ## Current display font — Barlow Condensed Bold
 
 Unmodified font from the official Google Fonts repository: https://github.com/google/fonts/blob/main/ofl/barlowcondensed/BarlowCondensed-Bold.ttf . Official SIL Open Font License: https://raw.githubusercontent.com/google/fonts/main/ofl/barlowcondensed/OFL.txt . The complete notice is bundled as `BarlowCondensed-OFL.txt`. File: `BarlowCondensed-Bold.ttf`, 109912 bytes, SHA-256 `e476562ec9c1e16cf16475895b511f08c804f438cc9a9f80a44ea50a0eeb5b65`. Manrope remains the separately licensed UI font. No Cosmos artwork, code or commercial font was copied.
+
+## Reviewer case-study assets — 21 October 2026
+
+`checked-replay.png` is an unaltered copy of the actual current-instrument browser capture in `docs/evidence/cosmos-solved-desktop.png`. It records replay 4/4 of the explicitly synthetic level now available as `reviewer-level.json`: capacity 2, bottles `[[0,1],[1,2],[2,0],[],[]]`. These are project-owned product evidence and portable example data, not licensed gallery artwork or player/adoption evidence.

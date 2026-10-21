@@ -1,0 +1,2435 @@
+{
+  "format": "pourlab-solver-evaluation",
+  "version": 1,
+  "measuredAt": "2026-10-21T09:02:33.984Z",
+  "source": {
+    "baseCommit": "82d072158b29ab4ef8b8cf4bc0e50e85c23bff0c",
+    "solverSha256": "89fd1a967483592762320f1390f9863b06762e2cd96587c22675d530aca08cfd",
+    "corpusSha256": "67e4c2ed738e46691712b958e247fcd93af22ff7da84baaeff25bd7ff90fbc45",
+    "evaluatorSha256": "e81a1d35264225c3d01885b8f9c41ada9c3a41fb6b842a4a541b72eb54d2988d",
+    "oracleSha256": "f7e2465287b54de19dd5b1ee04475f70396aac732a9be3bc55b17e58ccec4d94"
+  },
+  "environment": {
+    "node": "v24.19.0",
+    "platform": "win32",
+    "osRelease": "10.0.26300",
+    "architecture": "x64",
+    "cpu": "11th Gen Intel(R) Core(TM) i7-11850H @ 2.50GHz",
+    "logicalCpus": 16
+  },
+  "method": {
+    "repeats": 5,
+    "warmupsPerCaseAndAlgorithm": 1,
+    "oracleMaxStates": 50000,
+    "timing": "performance.now around synchronous production solve only; independent path/oracle verification excluded; no worker, DOM or browser rendering",
+    "order": "fixed corpus order; A* then BFS for each case; fixed order and JIT/GC affect timings; no performance threshold"
+  },
+  "summary": {
+    "cases": 40,
+    "uniqueLevels": 34,
+    "oracleCases": 16,
+    "uniqueOracleLevels": 11,
+    "algorithmCasePairs": 80,
+    "completeAgreementCases": 36,
+    "independentlyReplayedSolvedPairs": 69,
+    "astar": {
+      "solved": 35,
+      "unsolvable": 2,
+      "exhausted": 2,
+      "invalid": 1
+    },
+    "bfs": {
+      "solved": 34,
+      "unsolvable": 2,
+      "exhausted": 3,
+      "invalid": 1
+    },
+    "evaluationElapsedMs": 1897.5428
+  },
+  "rows": [
+    {
+      "id": "already-solved",
+      "group": "boundary",
+      "seed": null,
+      "capacity": 4,
+      "bottles": 3,
+      "oracle": {
+        "status": "solved",
+        "distance": 0,
+        "visited": 1
+      },
+      "astar": {
+        "status": "solved",
+        "reason": null,
+        "moves": 0,
+        "visited": 1,
+        "expanded": 0,
+        "peakFrontier": 1,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 0.05299999999999727,
+          "min": 0.03370000000001028,
+          "max": 0.07150000000000034,
+          "samples": [
+            0.07150000000000034,
+            0.05760000000000787,
+            0.05299999999999727,
+            0.05159999999999343,
+            0.03370000000001028
+          ]
+        }
+      },
+      "bfs": {
+        "status": "solved",
+        "reason": null,
+        "moves": 0,
+        "visited": 1,
+        "expanded": 0,
+        "peakFrontier": 1,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 0.032399999999995543,
+          "min": 0.023499999999998522,
+          "max": 0.07139999999999702,
+          "samples": [
+            0.032300000000006435,
+            0.059499999999999886,
+            0.07139999999999702,
+            0.032399999999995543,
+            0.023499999999998522
+          ]
+        }
+      }
+    },
+    {
+      "id": "repeated-full-color",
+      "group": "boundary",
+      "seed": null,
+      "capacity": 2,
+      "bottles": 3,
+      "oracle": {
+        "status": "solved",
+        "distance": 0,
+        "visited": 1
+      },
+      "astar": {
+        "status": "solved",
+        "reason": null,
+        "moves": 0,
+        "visited": 1,
+        "expanded": 0,
+        "peakFrontier": 1,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 0.02360000000000184,
+          "min": 0.011399999999994748,
+          "max": 1.0617000000000019,
+          "samples": [
+            0.037599999999997635,
+            0.02360000000000184,
+            1.0617000000000019,
+            0.02230000000000132,
+            0.011399999999994748
+          ]
+        }
+      },
+      "bfs": {
+        "status": "solved",
+        "reason": null,
+        "moves": 0,
+        "visited": 1,
+        "expanded": 0,
+        "peakFrontier": 1,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 0.00929999999999609,
+          "min": 0.00919999999999277,
+          "max": 0.009399999999999409,
+          "samples": [
+            0.009399999999999409,
+            0.009399999999999409,
+            0.00929999999999609,
+            0.00919999999999277,
+            0.00920000000000698
+          ]
+        }
+      }
+    },
+    {
+      "id": "trapped-capacity-two",
+      "group": "boundary",
+      "seed": null,
+      "capacity": 2,
+      "bottles": 2,
+      "oracle": {
+        "status": "unsolvable",
+        "distance": null,
+        "visited": 1
+      },
+      "astar": {
+        "status": "unsolvable",
+        "reason": "complete",
+        "moves": null,
+        "visited": 1,
+        "expanded": 1,
+        "peakFrontier": 1,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 0.016199999999997772,
+          "min": 0.012599999999991951,
+          "max": 0.019099999999994566,
+          "samples": [
+            0.01829999999999643,
+            0.016199999999997772,
+            0.012599999999991951,
+            0.019099999999994566,
+            0.014799999999993929
+          ]
+        }
+      },
+      "bfs": {
+        "status": "unsolvable",
+        "reason": "complete",
+        "moves": null,
+        "visited": 1,
+        "expanded": 1,
+        "peakFrontier": 1,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 0.008600000000001273,
+          "min": 0.008300000000005525,
+          "max": 0.009799999999998477,
+          "samples": [
+            0.009799999999998477,
+            0.00919999999999277,
+            0.008600000000001273,
+            0.008300000000005525,
+            0.008499999999997954
+          ]
+        }
+      }
+    },
+    {
+      "id": "trapped-capacity-three",
+      "group": "boundary",
+      "seed": null,
+      "capacity": 3,
+      "bottles": 2,
+      "oracle": {
+        "status": "unsolvable",
+        "distance": null,
+        "visited": 1
+      },
+      "astar": {
+        "status": "unsolvable",
+        "reason": "complete",
+        "moves": null,
+        "visited": 1,
+        "expanded": 1,
+        "peakFrontier": 1,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 0.00909999999998945,
+          "min": 0.008799999999993702,
+          "max": 0.013999999999995794,
+          "samples": [
+            0.00909999999998945,
+            0.008799999999993702,
+            0.010500000000007503,
+            0.009000000000000341,
+            0.013999999999995794
+          ]
+        }
+      },
+      "bfs": {
+        "status": "unsolvable",
+        "reason": "complete",
+        "moves": null,
+        "visited": 1,
+        "expanded": 1,
+        "peakFrontier": 1,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 0.008899999999997021,
+          "min": 0.008299999999991314,
+          "max": 0.009699999999995157,
+          "samples": [
+            0.008299999999991314,
+            0.009600000000006048,
+            0.009699999999995157,
+            0.008899999999997021,
+            0.008700000000004593
+          ]
+        }
+      }
+    },
+    {
+      "id": "known-three-pours",
+      "group": "boundary",
+      "seed": null,
+      "capacity": 2,
+      "bottles": 4,
+      "oracle": {
+        "status": "solved",
+        "distance": 3,
+        "visited": 34
+      },
+      "astar": {
+        "status": "solved",
+        "reason": null,
+        "moves": 3,
+        "visited": 7,
+        "expanded": 5,
+        "peakFrontier": 3,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 0.10979999999999279,
+          "min": 0.10139999999999816,
+          "max": 0.17210000000000036,
+          "samples": [
+            0.10979999999999279,
+            0.17020000000000834,
+            0.17210000000000036,
+            0.10240000000000293,
+            0.10139999999999816
+          ]
+        }
+      },
+      "bfs": {
+        "status": "solved",
+        "reason": null,
+        "moves": 3,
+        "visited": 7,
+        "expanded": 6,
+        "peakFrontier": 3,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 0.1384999999999934,
+          "min": 0.1285000000000025,
+          "max": 0.15789999999999793,
+          "samples": [
+            0.14579999999999416,
+            0.15789999999999793,
+            0.1285000000000025,
+            0.13809999999999434,
+            0.1384999999999934
+          ]
+        }
+      }
+    },
+    {
+      "id": "three-color-ring",
+      "group": "boundary",
+      "seed": null,
+      "capacity": 3,
+      "bottles": 5,
+      "oracle": {
+        "status": "solved",
+        "distance": 7,
+        "visited": 687
+      },
+      "astar": {
+        "status": "solved",
+        "reason": null,
+        "moves": 7,
+        "visited": 48,
+        "expanded": 16,
+        "peakFrontier": 34,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 0.509600000000006,
+          "min": 0.5046999999999997,
+          "max": 0.9188000000000045,
+          "samples": [
+            0.509600000000006,
+            0.5046999999999997,
+            0.7066000000000088,
+            0.9188000000000045,
+            0.5049999999999955
+          ]
+        }
+      },
+      "bfs": {
+        "status": "solved",
+        "reason": null,
+        "moves": 7,
+        "visited": 93,
+        "expanded": 92,
+        "peakFrontier": 30,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 2.3721999999999923,
+          "min": 1.955600000000004,
+          "max": 3.490700000000004,
+          "samples": [
+            3.490700000000004,
+            2.7460999999999984,
+            2.0101999999999975,
+            1.955600000000004,
+            2.3721999999999923
+          ]
+        }
+      }
+    },
+    {
+      "id": "matrix-c2-k2-fixed-a",
+      "group": "seed-matrix",
+      "seed": "engineering-fixed-a",
+      "capacity": 2,
+      "bottles": 4,
+      "oracle": {
+        "status": "solved",
+        "distance": 3,
+        "visited": 34
+      },
+      "astar": {
+        "status": "solved",
+        "reason": null,
+        "moves": 3,
+        "visited": 7,
+        "expanded": 5,
+        "peakFrontier": 3,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 0.18770000000000664,
+          "min": 0.10899999999999466,
+          "max": 0.2845999999999975,
+          "samples": [
+            0.23629999999999995,
+            0.2845999999999975,
+            0.18770000000000664,
+            0.10899999999999466,
+            0.11019999999999186
+          ]
+        }
+      },
+      "bfs": {
+        "status": "solved",
+        "reason": null,
+        "moves": 3,
+        "visited": 7,
+        "expanded": 6,
+        "peakFrontier": 3,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 0.14690000000000225,
+          "min": 0.11179999999998813,
+          "max": 0.41970000000000596,
+          "samples": [
+            0.11179999999998813,
+            0.41970000000000596,
+            0.14790000000000703,
+            0.14690000000000225,
+            0.11469999999999914
+          ]
+        }
+      }
+    },
+    {
+      "id": "matrix-c2-k2-fixed-b",
+      "group": "seed-matrix",
+      "seed": "engineering-fixed-b",
+      "capacity": 2,
+      "bottles": 4,
+      "oracle": {
+        "status": "solved",
+        "distance": 3,
+        "visited": 34
+      },
+      "astar": {
+        "status": "solved",
+        "reason": null,
+        "moves": 3,
+        "visited": 7,
+        "expanded": 5,
+        "peakFrontier": 3,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 0.10779999999999745,
+          "min": 0.09619999999999607,
+          "max": 0.1418999999999926,
+          "samples": [
+            0.10660000000000025,
+            0.10779999999999745,
+            0.10970000000000368,
+            0.09619999999999607,
+            0.1418999999999926
+          ]
+        }
+      },
+      "bfs": {
+        "status": "solved",
+        "reason": null,
+        "moves": 3,
+        "visited": 7,
+        "expanded": 6,
+        "peakFrontier": 3,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 0.11880000000000734,
+          "min": 0.09219999999999118,
+          "max": 0.15570000000001016,
+          "samples": [
+            0.11880000000000734,
+            0.15570000000001016,
+            0.09270000000000778,
+            0.13590000000000657,
+            0.09219999999999118
+          ]
+        }
+      }
+    },
+    {
+      "id": "matrix-c2-k3-fixed-a",
+      "group": "seed-matrix",
+      "seed": "engineering-fixed-a",
+      "capacity": 2,
+      "bottles": 5,
+      "oracle": {
+        "status": "solved",
+        "distance": 3,
+        "visited": 108
+      },
+      "astar": {
+        "status": "solved",
+        "reason": null,
+        "moves": 3,
+        "visited": 7,
+        "expanded": 5,
+        "peakFrontier": 3,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 0.15269999999999584,
+          "min": 0.14579999999999416,
+          "max": 0.23919999999999675,
+          "samples": [
+            0.14789999999999281,
+            0.14579999999999416,
+            0.15269999999999584,
+            0.18619999999999948,
+            0.23919999999999675
+          ]
+        }
+      },
+      "bfs": {
+        "status": "solved",
+        "reason": null,
+        "moves": 3,
+        "visited": 7,
+        "expanded": 6,
+        "peakFrontier": 3,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 0.15330000000000155,
+          "min": 0.1302000000000021,
+          "max": 0.49980000000000757,
+          "samples": [
+            0.49980000000000757,
+            0.15330000000000155,
+            0.14989999999998815,
+            0.1302000000000021,
+            0.28660000000000707
+          ]
+        }
+      }
+    },
+    {
+      "id": "matrix-c2-k3-fixed-b",
+      "group": "seed-matrix",
+      "seed": "engineering-fixed-b",
+      "capacity": 2,
+      "bottles": 5,
+      "oracle": {
+        "status": "solved",
+        "distance": 0,
+        "visited": 1
+      },
+      "astar": {
+        "status": "solved",
+        "reason": null,
+        "moves": 0,
+        "visited": 1,
+        "expanded": 0,
+        "peakFrontier": 1,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 0.021599999999992292,
+          "min": 0.019199999999997885,
+          "max": 0.03900000000000148,
+          "samples": [
+            0.021599999999992292,
+            0.019199999999997885,
+            0.019200000000012096,
+            0.02190000000000225,
+            0.03900000000000148
+          ]
+        }
+      },
+      "bfs": {
+        "status": "solved",
+        "reason": null,
+        "moves": 0,
+        "visited": 1,
+        "expanded": 0,
+        "peakFrontier": 1,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 0.011600000000001387,
+          "min": 0.010099999999994225,
+          "max": 0.039599999999992974,
+          "samples": [
+            0.03529999999999234,
+            0.039599999999992974,
+            0.010099999999994225,
+            0.010199999999997544,
+            0.011600000000001387
+          ]
+        }
+      }
+    },
+    {
+      "id": "matrix-c2-k4-fixed-a",
+      "group": "seed-matrix",
+      "seed": "engineering-fixed-a",
+      "capacity": 2,
+      "bottles": 6,
+      "oracle": null,
+      "astar": {
+        "status": "solved",
+        "reason": null,
+        "moves": 4,
+        "visited": 13,
+        "expanded": 7,
+        "peakFrontier": 6,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 0.2465000000000117,
+          "min": 0.22690000000000055,
+          "max": 0.2586000000000013,
+          "samples": [
+            0.2586000000000013,
+            0.24330000000000496,
+            0.2582000000000022,
+            0.2465000000000117,
+            0.22690000000000055
+          ]
+        }
+      },
+      "bfs": {
+        "status": "solved",
+        "reason": null,
+        "moves": 4,
+        "visited": 17,
+        "expanded": 13,
+        "peakFrontier": 6,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 0.32210000000000605,
+          "min": 0.3013999999999868,
+          "max": 0.5952000000000055,
+          "samples": [
+            0.3013999999999868,
+            0.5952000000000055,
+            0.32210000000000605,
+            0.3211000000000013,
+            0.346500000000006
+          ]
+        }
+      }
+    },
+    {
+      "id": "matrix-c2-k4-fixed-b",
+      "group": "seed-matrix",
+      "seed": "engineering-fixed-b",
+      "capacity": 2,
+      "bottles": 6,
+      "oracle": null,
+      "astar": {
+        "status": "solved",
+        "reason": null,
+        "moves": 5,
+        "visited": 26,
+        "expanded": 11,
+        "peakFrontier": 15,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 0.36079999999999757,
+          "min": 0.32220000000000937,
+          "max": 0.6539000000000073,
+          "samples": [
+            0.3224999999999909,
+            0.32220000000000937,
+            0.36079999999999757,
+            0.3872999999999962,
+            0.6539000000000073
+          ]
+        }
+      },
+      "bfs": {
+        "status": "solved",
+        "reason": null,
+        "moves": 5,
+        "visited": 38,
+        "expanded": 31,
+        "peakFrontier": 13,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 0.5358000000000089,
+          "min": 0.3324000000000069,
+          "max": 0.5614999999999952,
+          "samples": [
+            0.5523000000000025,
+            0.5358000000000089,
+            0.3324000000000069,
+            0.5614999999999952,
+            0.3637999999999977
+          ]
+        }
+      }
+    },
+    {
+      "id": "matrix-c3-k2-fixed-a",
+      "group": "seed-matrix",
+      "seed": "engineering-fixed-a",
+      "capacity": 3,
+      "bottles": 4,
+      "oracle": {
+        "status": "solved",
+        "distance": 3,
+        "visited": 42
+      },
+      "astar": {
+        "status": "solved",
+        "reason": null,
+        "moves": 3,
+        "visited": 7,
+        "expanded": 5,
+        "peakFrontier": 3,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 0.05010000000000048,
+          "min": 0.04819999999999425,
+          "max": 0.0648000000000053,
+          "samples": [
+            0.0648000000000053,
+            0.05010000000000048,
+            0.04930000000000234,
+            0.04819999999999425,
+            0.05509999999999593
+          ]
+        }
+      },
+      "bfs": {
+        "status": "solved",
+        "reason": null,
+        "moves": 3,
+        "visited": 7,
+        "expanded": 6,
+        "peakFrontier": 3,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 0.05529999999998836,
+          "min": 0.05320000000000391,
+          "max": 0.0724000000000018,
+          "samples": [
+            0.05320000000000391,
+            0.05870000000000175,
+            0.05529999999998836,
+            0.0724000000000018,
+            0.05480000000000018
+          ]
+        }
+      }
+    },
+    {
+      "id": "matrix-c3-k2-fixed-b",
+      "group": "seed-matrix",
+      "seed": "engineering-fixed-b",
+      "capacity": 3,
+      "bottles": 4,
+      "oracle": {
+        "status": "solved",
+        "distance": 3,
+        "visited": 42
+      },
+      "astar": {
+        "status": "solved",
+        "reason": null,
+        "moves": 3,
+        "visited": 7,
+        "expanded": 5,
+        "peakFrontier": 3,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 0.05100000000000193,
+          "min": 0.048799999999999955,
+          "max": 0.08429999999999893,
+          "samples": [
+            0.048799999999999955,
+            0.08429999999999893,
+            0.05639999999999645,
+            0.04970000000000141,
+            0.05100000000000193
+          ]
+        }
+      },
+      "bfs": {
+        "status": "solved",
+        "reason": null,
+        "moves": 3,
+        "visited": 7,
+        "expanded": 6,
+        "peakFrontier": 3,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 0.09770000000000323,
+          "min": 0.06100000000000705,
+          "max": 0.4376000000000033,
+          "samples": [
+            0.4376000000000033,
+            0.11090000000000089,
+            0.09770000000000323,
+            0.09569999999999368,
+            0.06100000000000705
+          ]
+        }
+      }
+    },
+    {
+      "id": "matrix-c3-k3-fixed-a",
+      "group": "seed-matrix",
+      "seed": "engineering-fixed-a",
+      "capacity": 3,
+      "bottles": 5,
+      "oracle": {
+        "status": "solved",
+        "distance": 6,
+        "visited": 573
+      },
+      "astar": {
+        "status": "solved",
+        "reason": null,
+        "moves": 6,
+        "visited": 25,
+        "expanded": 10,
+        "peakFrontier": 15,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 0.17010000000000502,
+          "min": 0.15730000000000643,
+          "max": 0.38009999999999877,
+          "samples": [
+            0.17010000000000502,
+            0.38009999999999877,
+            0.16150000000000375,
+            0.23990000000000578,
+            0.15730000000000643
+          ]
+        }
+      },
+      "bfs": {
+        "status": "solved",
+        "reason": null,
+        "moves": 6,
+        "visited": 54,
+        "expanded": 52,
+        "peakFrontier": 17,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 0.6996000000000038,
+          "min": 0.5694000000000017,
+          "max": 1.0845000000000198,
+          "samples": [
+            0.5694000000000017,
+            1.0200000000000102,
+            0.6996000000000038,
+            0.6555999999999926,
+            1.0845000000000198
+          ]
+        }
+      }
+    },
+    {
+      "id": "matrix-c3-k3-fixed-b",
+      "group": "seed-matrix",
+      "seed": "engineering-fixed-b",
+      "capacity": 3,
+      "bottles": 5,
+      "oracle": {
+        "status": "solved",
+        "distance": 6,
+        "visited": 464
+      },
+      "astar": {
+        "status": "solved",
+        "reason": null,
+        "moves": 6,
+        "visited": 37,
+        "expanded": 15,
+        "peakFrontier": 23,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 0.6646000000000072,
+          "min": 0.2370999999999981,
+          "max": 1.2513999999999896,
+          "samples": [
+            0.2370999999999981,
+            1.2513999999999896,
+            0.6372000000000071,
+            0.7608999999999924,
+            0.6646000000000072
+          ]
+        }
+      },
+      "bfs": {
+        "status": "solved",
+        "reason": null,
+        "moves": 6,
+        "visited": 58,
+        "expanded": 57,
+        "peakFrontier": 20,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 1.5909000000000049,
+          "min": 1.4279000000000224,
+          "max": 1.898399999999981,
+          "samples": [
+            1.898399999999981,
+            1.7017000000000166,
+            1.5909000000000049,
+            1.5160000000000196,
+            1.4279000000000224
+          ]
+        }
+      }
+    },
+    {
+      "id": "matrix-c3-k4-fixed-a",
+      "group": "seed-matrix",
+      "seed": "engineering-fixed-a",
+      "capacity": 3,
+      "bottles": 6,
+      "oracle": null,
+      "astar": {
+        "status": "solved",
+        "reason": null,
+        "moves": 8,
+        "visited": 51,
+        "expanded": 15,
+        "peakFrontier": 36,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 0.4421999999999855,
+          "min": 0.3891999999999882,
+          "max": 0.6836000000000126,
+          "samples": [
+            0.4515999999999849,
+            0.6836000000000126,
+            0.39169999999998595,
+            0.3891999999999882,
+            0.4421999999999855
+          ]
+        }
+      },
+      "bfs": {
+        "status": "solved",
+        "reason": null,
+        "moves": 8,
+        "visited": 157,
+        "expanded": 155,
+        "peakFrontier": 39,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 4.45150000000001,
+          "min": 3.6950999999999965,
+          "max": 5.616199999999992,
+          "samples": [
+            4.528199999999998,
+            4.193999999999988,
+            3.6950999999999965,
+            5.616199999999992,
+            4.45150000000001
+          ]
+        }
+      }
+    },
+    {
+      "id": "matrix-c3-k4-fixed-b",
+      "group": "seed-matrix",
+      "seed": "engineering-fixed-b",
+      "capacity": 3,
+      "bottles": 6,
+      "oracle": null,
+      "astar": {
+        "status": "solved",
+        "reason": null,
+        "moves": 7,
+        "visited": 51,
+        "expanded": 16,
+        "peakFrontier": 35,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 0.6543000000000063,
+          "min": 0.44530000000000314,
+          "max": 1.1366999999999905,
+          "samples": [
+            0.6543000000000063,
+            0.7621999999999787,
+            1.1366999999999905,
+            0.44530000000000314,
+            0.6115999999999815
+          ]
+        }
+      },
+      "bfs": {
+        "status": "solved",
+        "reason": null,
+        "moves": 7,
+        "visited": 105,
+        "expanded": 100,
+        "peakFrontier": 30,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 2.752600000000001,
+          "min": 2.5632000000000232,
+          "max": 2.7842999999999734,
+          "samples": [
+            2.752600000000001,
+            2.7842999999999734,
+            2.568700000000007,
+            2.7790999999999997,
+            2.5632000000000232
+          ]
+        }
+      }
+    },
+    {
+      "id": "matrix-c4-k2-fixed-a",
+      "group": "seed-matrix",
+      "seed": "engineering-fixed-a",
+      "capacity": 4,
+      "bottles": 4,
+      "oracle": null,
+      "astar": {
+        "status": "solved",
+        "reason": null,
+        "moves": 5,
+        "visited": 13,
+        "expanded": 6,
+        "peakFrontier": 7,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 0.077699999999993,
+          "min": 0.07630000000000337,
+          "max": 0.08679999999998245,
+          "samples": [
+            0.08220000000000027,
+            0.08679999999998245,
+            0.077699999999993,
+            0.07630000000000337,
+            0.07679999999999154
+          ]
+        }
+      },
+      "bfs": {
+        "status": "solved",
+        "reason": null,
+        "moves": 5,
+        "visited": 30,
+        "expanded": 26,
+        "peakFrontier": 10,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 0.2272000000000105,
+          "min": 0.21119999999999095,
+          "max": 0.41399999999998727,
+          "samples": [
+            0.2664999999999793,
+            0.41399999999998727,
+            0.2272000000000105,
+            0.21119999999999095,
+            0.21350000000001046
+          ]
+        }
+      }
+    },
+    {
+      "id": "matrix-c4-k2-fixed-b",
+      "group": "seed-matrix",
+      "seed": "engineering-fixed-b",
+      "capacity": 4,
+      "bottles": 4,
+      "oracle": null,
+      "astar": {
+        "status": "solved",
+        "reason": null,
+        "moves": 3,
+        "visited": 6,
+        "expanded": 4,
+        "peakFrontier": 3,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 0.0403999999999769,
+          "min": 0.039800000000013824,
+          "max": 0.041399999999981674,
+          "samples": [
+            0.0403999999999769,
+            0.04099999999999682,
+            0.041399999999981674,
+            0.039800000000013824,
+            0.03989999999998872
+          ]
+        }
+      },
+      "bfs": {
+        "status": "solved",
+        "reason": null,
+        "moves": 3,
+        "visited": 7,
+        "expanded": 5,
+        "peakFrontier": 3,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 0.07450000000000045,
+          "min": 0.047100000000000364,
+          "max": 0.08640000000002601,
+          "samples": [
+            0.07450000000000045,
+            0.08640000000002601,
+            0.07970000000000255,
+            0.05500000000000682,
+            0.047100000000000364
+          ]
+        }
+      }
+    },
+    {
+      "id": "matrix-c4-k3-fixed-a",
+      "group": "seed-matrix",
+      "seed": "engineering-fixed-a",
+      "capacity": 4,
+      "bottles": 5,
+      "oracle": null,
+      "astar": {
+        "status": "solved",
+        "reason": null,
+        "moves": 7,
+        "visited": 33,
+        "expanded": 12,
+        "peakFrontier": 21,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 0.17390000000000327,
+          "min": 0.16049999999998477,
+          "max": 0.1787999999999954,
+          "samples": [
+            0.1751000000000147,
+            0.1787999999999954,
+            0.17390000000000327,
+            0.1640999999999906,
+            0.16049999999998477
+          ]
+        }
+      },
+      "bfs": {
+        "status": "solved",
+        "reason": null,
+        "moves": 7,
+        "visited": 109,
+        "expanded": 104,
+        "peakFrontier": 31,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 1.5708999999999946,
+          "min": 1.2344000000000221,
+          "max": 1.887900000000002,
+          "samples": [
+            1.2344000000000221,
+            1.2742000000000075,
+            1.887900000000002,
+            1.8411999999999864,
+            1.5708999999999946
+          ]
+        }
+      }
+    },
+    {
+      "id": "matrix-c4-k3-fixed-b",
+      "group": "seed-matrix",
+      "seed": "engineering-fixed-b",
+      "capacity": 4,
+      "bottles": 5,
+      "oracle": null,
+      "astar": {
+        "status": "solved",
+        "reason": null,
+        "moves": 7,
+        "visited": 42,
+        "expanded": 15,
+        "peakFrontier": 27,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 0.3505000000000109,
+          "min": 0.29930000000001655,
+          "max": 0.4270000000000209,
+          "samples": [
+            0.3318999999999903,
+            0.29930000000001655,
+            0.3505000000000109,
+            0.42379999999999995,
+            0.4270000000000209
+          ]
+        }
+      },
+      "bfs": {
+        "status": "solved",
+        "reason": null,
+        "moves": 7,
+        "visited": 98,
+        "expanded": 91,
+        "peakFrontier": 25,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 1.1485000000000127,
+          "min": 0.9235999999999933,
+          "max": 1.737400000000008,
+          "samples": [
+            1.1485000000000127,
+            0.9235999999999933,
+            0.9740999999999929,
+            1.5857000000000028,
+            1.737400000000008
+          ]
+        }
+      }
+    },
+    {
+      "id": "matrix-c4-k4-fixed-a",
+      "group": "seed-matrix",
+      "seed": "engineering-fixed-a",
+      "capacity": 4,
+      "bottles": 6,
+      "oracle": null,
+      "astar": {
+        "status": "solved",
+        "reason": null,
+        "moves": 13,
+        "visited": 148,
+        "expanded": 50,
+        "peakFrontier": 101,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 1.6792999999999836,
+          "min": 1.3759000000000015,
+          "max": 2.7513999999999896,
+          "samples": [
+            1.3759000000000015,
+            2.7513999999999896,
+            1.6792999999999836,
+            2.157900000000012,
+            1.5705000000000098
+          ]
+        }
+      },
+      "bfs": {
+        "status": "solved",
+        "reason": null,
+        "moves": 13,
+        "visited": 576,
+        "expanded": 570,
+        "peakFrontier": 99,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 9.729999999999961,
+          "min": 8.40379999999999,
+          "max": 15.58340000000004,
+          "samples": [
+            10.885899999999992,
+            9.729999999999961,
+            9.61239999999998,
+            8.40379999999999,
+            15.58340000000004
+          ]
+        }
+      }
+    },
+    {
+      "id": "matrix-c4-k4-fixed-b",
+      "group": "seed-matrix",
+      "seed": "engineering-fixed-b",
+      "capacity": 4,
+      "bottles": 6,
+      "oracle": null,
+      "astar": {
+        "status": "solved",
+        "reason": null,
+        "moves": 11,
+        "visited": 192,
+        "expanded": 82,
+        "peakFrontier": 112,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 1.268000000000029,
+          "min": 1.1659999999999968,
+          "max": 2.5108999999999924,
+          "samples": [
+            2.5108999999999924,
+            1.269900000000007,
+            1.268000000000029,
+            1.1659999999999968,
+            1.1918999999999755
+          ]
+        }
+      },
+      "bfs": {
+        "status": "solved",
+        "reason": null,
+        "moves": 11,
+        "visited": 397,
+        "expanded": 394,
+        "peakFrontier": 70,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 6.2193000000000325,
+          "min": 4.299200000000042,
+          "max": 7.969500000000039,
+          "samples": [
+            4.6766999999999825,
+            4.299200000000042,
+            6.2193000000000325,
+            7.969500000000039,
+            6.8110000000000355
+          ]
+        }
+      }
+    },
+    {
+      "id": "matrix-c5-k2-fixed-a",
+      "group": "seed-matrix",
+      "seed": "engineering-fixed-a",
+      "capacity": 5,
+      "bottles": 4,
+      "oracle": null,
+      "astar": {
+        "status": "solved",
+        "reason": null,
+        "moves": 7,
+        "visited": 30,
+        "expanded": 18,
+        "peakFrontier": 14,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 0.1705000000000041,
+          "min": 0.16269999999997253,
+          "max": 0.361500000000035,
+          "samples": [
+            0.1705000000000041,
+            0.16269999999997253,
+            0.183400000000006,
+            0.1681000000000381,
+            0.361500000000035
+          ]
+        }
+      },
+      "bfs": {
+        "status": "solved",
+        "reason": null,
+        "moves": 7,
+        "visited": 40,
+        "expanded": 38,
+        "peakFrontier": 10,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 0.5479000000000269,
+          "min": 0.3469000000000051,
+          "max": 0.6328000000000316,
+          "samples": [
+            0.3469000000000051,
+            0.35520000000002483,
+            0.5479000000000269,
+            0.6328000000000316,
+            0.6326000000000249
+          ]
+        }
+      }
+    },
+    {
+      "id": "matrix-c5-k2-fixed-b",
+      "group": "seed-matrix",
+      "seed": "engineering-fixed-b",
+      "capacity": 5,
+      "bottles": 4,
+      "oracle": null,
+      "astar": {
+        "status": "solved",
+        "reason": null,
+        "moves": 6,
+        "visited": 26,
+        "expanded": 16,
+        "peakFrontier": 11,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 0.2822999999999638,
+          "min": 0.24099999999998545,
+          "max": 0.6963000000000079,
+          "samples": [
+            0.6963000000000079,
+            0.2822999999999638,
+            0.2948999999999842,
+            0.2714000000000283,
+            0.24099999999998545
+          ]
+        }
+      },
+      "bfs": {
+        "status": "solved",
+        "reason": null,
+        "moves": 6,
+        "visited": 30,
+        "expanded": 28,
+        "peakFrontier": 10,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 0.3498000000000161,
+          "min": 0.3195999999999799,
+          "max": 0.38460000000003447,
+          "samples": [
+            0.38460000000003447,
+            0.359800000000007,
+            0.3498000000000161,
+            0.3458999999999719,
+            0.3195999999999799
+          ]
+        }
+      }
+    },
+    {
+      "id": "matrix-c5-k3-fixed-a",
+      "group": "seed-matrix",
+      "seed": "engineering-fixed-a",
+      "capacity": 5,
+      "bottles": 5,
+      "oracle": null,
+      "astar": {
+        "status": "solved",
+        "reason": null,
+        "moves": 8,
+        "visited": 39,
+        "expanded": 13,
+        "peakFrontier": 26,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 0.23120000000000118,
+          "min": 0.16739999999998645,
+          "max": 0.26439999999996644,
+          "samples": [
+            0.26439999999996644,
+            0.2616999999999621,
+            0.16739999999998645,
+            0.20010000000002037,
+            0.23120000000000118
+          ]
+        }
+      },
+      "bfs": {
+        "status": "solved",
+        "reason": null,
+        "moves": 8,
+        "visited": 186,
+        "expanded": 182,
+        "peakFrontier": 50,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 1.8511000000000308,
+          "min": 1.5197000000000003,
+          "max": 2.8747000000000185,
+          "samples": [
+            2.1703999999999724,
+            1.594099999999969,
+            1.5197000000000003,
+            1.8511000000000308,
+            2.8747000000000185
+          ]
+        }
+      }
+    },
+    {
+      "id": "matrix-c5-k3-fixed-b",
+      "group": "seed-matrix",
+      "seed": "engineering-fixed-b",
+      "capacity": 5,
+      "bottles": 5,
+      "oracle": null,
+      "astar": {
+        "status": "solved",
+        "reason": null,
+        "moves": 9,
+        "visited": 42,
+        "expanded": 13,
+        "peakFrontier": 29,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 0.290300000000002,
+          "min": 0.1827000000000112,
+          "max": 0.2968000000000188,
+          "samples": [
+            0.290300000000002,
+            0.1827000000000112,
+            0.2910999999999717,
+            0.2968000000000188,
+            0.22710000000000719
+          ]
+        }
+      },
+      "bfs": {
+        "status": "solved",
+        "reason": null,
+        "moves": 9,
+        "visited": 262,
+        "expanded": 257,
+        "peakFrontier": 68,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 3.9320999999999913,
+          "min": 2.835199999999986,
+          "max": 4.494100000000003,
+          "samples": [
+            3.9320999999999913,
+            2.835199999999986,
+            4.093000000000018,
+            4.494100000000003,
+            3.4664000000000215
+          ]
+        }
+      }
+    },
+    {
+      "id": "matrix-c5-k4-fixed-a",
+      "group": "seed-matrix",
+      "seed": "engineering-fixed-a",
+      "capacity": 5,
+      "bottles": 6,
+      "oracle": null,
+      "astar": {
+        "status": "solved",
+        "reason": null,
+        "moves": 15,
+        "visited": 201,
+        "expanded": 48,
+        "peakFrontier": 154,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 1.5339999999999918,
+          "min": 0.9429000000000087,
+          "max": 2.7343999999999937,
+          "samples": [
+            1.5339999999999918,
+            2.7343999999999937,
+            2.210900000000038,
+            1.0314000000000192,
+            0.9429000000000087
+          ]
+        }
+      },
+      "bfs": {
+        "status": "solved",
+        "reason": null,
+        "moves": 15,
+        "visited": 1842,
+        "expanded": 1839,
+        "peakFrontier": 316,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 31.912000000000035,
+          "min": 27.714899999999943,
+          "max": 37.22709999999995,
+          "samples": [
+            37.22709999999995,
+            29.850599999999986,
+            31.912000000000035,
+            27.714899999999943,
+            36.34129999999993
+          ]
+        }
+      }
+    },
+    {
+      "id": "matrix-c5-k4-fixed-b",
+      "group": "seed-matrix",
+      "seed": "engineering-fixed-b",
+      "capacity": 5,
+      "bottles": 6,
+      "oracle": null,
+      "astar": {
+        "status": "solved",
+        "reason": null,
+        "moves": 12,
+        "visited": 270,
+        "expanded": 126,
+        "peakFrontier": 156,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 2.6581999999999653,
+          "min": 2.343499999999949,
+          "max": 3.2823000000000775,
+          "samples": [
+            3.0598999999999705,
+            3.2823000000000775,
+            2.644100000000094,
+            2.6581999999999653,
+            2.343499999999949
+          ]
+        }
+      },
+      "bfs": {
+        "status": "solved",
+        "reason": null,
+        "moves": 12,
+        "visited": 692,
+        "expanded": 684,
+        "peakFrontier": 109,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 8.409599999999955,
+          "min": 6.805100000000039,
+          "max": 10.40479999999991,
+          "samples": [
+            6.805100000000039,
+            9.215400000000045,
+            8.069899999999961,
+            10.40479999999991,
+            8.409599999999955
+          ]
+        }
+      }
+    },
+    {
+      "id": "matrix-c6-k2-fixed-a",
+      "group": "seed-matrix",
+      "seed": "engineering-fixed-a",
+      "capacity": 6,
+      "bottles": 4,
+      "oracle": null,
+      "astar": {
+        "status": "solved",
+        "reason": null,
+        "moves": 7,
+        "visited": 22,
+        "expanded": 8,
+        "peakFrontier": 14,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 0.16999999999995907,
+          "min": 0.11750000000006366,
+          "max": 0.22109999999997854,
+          "samples": [
+            0.15649999999993724,
+            0.22109999999997854,
+            0.16999999999995907,
+            0.11750000000006366,
+            0.19089999999994234
+          ]
+        }
+      },
+      "bfs": {
+        "status": "solved",
+        "reason": null,
+        "moves": 7,
+        "visited": 107,
+        "expanded": 100,
+        "peakFrontier": 32,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 0.876700000000028,
+          "min": 0.6596000000000686,
+          "max": 3.197400000000016,
+          "samples": [
+            0.6596000000000686,
+            0.9342000000000326,
+            0.6865000000000236,
+            0.876700000000028,
+            3.197400000000016
+          ]
+        }
+      }
+    },
+    {
+      "id": "matrix-c6-k2-fixed-b",
+      "group": "seed-matrix",
+      "seed": "engineering-fixed-b",
+      "capacity": 6,
+      "bottles": 4,
+      "oracle": null,
+      "astar": {
+        "status": "solved",
+        "reason": null,
+        "moves": 7,
+        "visited": 45,
+        "expanded": 22,
+        "peakFrontier": 25,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 0.4230000000000018,
+          "min": 0.3472999999999047,
+          "max": 0.7563000000000102,
+          "samples": [
+            0.3472999999999047,
+            0.3630000000000564,
+            0.4230000000000018,
+            0.7563000000000102,
+            0.47199999999998
+          ]
+        }
+      },
+      "bfs": {
+        "status": "solved",
+        "reason": null,
+        "moves": 7,
+        "visited": 68,
+        "expanded": 65,
+        "peakFrontier": 22,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 0.9320000000000164,
+          "min": 0.657799999999952,
+          "max": 1.124900000000025,
+          "samples": [
+            0.7975999999999885,
+            0.657799999999952,
+            1.0055999999999585,
+            1.124900000000025,
+            0.9320000000000164
+          ]
+        }
+      }
+    },
+    {
+      "id": "matrix-c6-k3-fixed-a",
+      "group": "seed-matrix",
+      "seed": "engineering-fixed-a",
+      "capacity": 6,
+      "bottles": 5,
+      "oracle": null,
+      "astar": {
+        "status": "solved",
+        "reason": null,
+        "moves": 11,
+        "visited": 116,
+        "expanded": 56,
+        "peakFrontier": 63,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 0.7169999999999845,
+          "min": 0.6372000000000071,
+          "max": 0.9938000000000784,
+          "samples": [
+            0.7257999999999356,
+            0.6855000000000473,
+            0.9938000000000784,
+            0.7169999999999845,
+            0.6372000000000071
+          ]
+        }
+      },
+      "bfs": {
+        "status": "solved",
+        "reason": null,
+        "moves": 11,
+        "visited": 247,
+        "expanded": 242,
+        "peakFrontier": 43,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 2.964999999999918,
+          "min": 2.403500000000008,
+          "max": 4.1422999999999774,
+          "samples": [
+            3.737700000000018,
+            4.1422999999999774,
+            2.403500000000008,
+            2.964999999999918,
+            2.5564000000000533
+          ]
+        }
+      }
+    },
+    {
+      "id": "matrix-c6-k3-fixed-b",
+      "group": "seed-matrix",
+      "seed": "engineering-fixed-b",
+      "capacity": 6,
+      "bottles": 5,
+      "oracle": null,
+      "astar": {
+        "status": "solved",
+        "reason": null,
+        "moves": 13,
+        "visited": 313,
+        "expanded": 155,
+        "peakFrontier": 162,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 2.2322000000000344,
+          "min": 1.5970000000000937,
+          "max": 3.076999999999998,
+          "samples": [
+            1.5970000000000937,
+            2.366800000000012,
+            3.076999999999998,
+            2.2322000000000344,
+            2.0318999999999505
+          ]
+        }
+      },
+      "bfs": {
+        "status": "solved",
+        "reason": null,
+        "moves": 13,
+        "visited": 653,
+        "expanded": 641,
+        "peakFrontier": 119,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 7.447599999999966,
+          "min": 6.5896999999999935,
+          "max": 9.338499999999954,
+          "samples": [
+            7.0978000000000065,
+            7.447599999999966,
+            8.464399999999955,
+            6.5896999999999935,
+            9.338499999999954
+          ]
+        }
+      }
+    },
+    {
+      "id": "matrix-c6-k4-fixed-a",
+      "group": "seed-matrix",
+      "seed": "engineering-fixed-a",
+      "capacity": 6,
+      "bottles": 6,
+      "oracle": null,
+      "astar": {
+        "status": "solved",
+        "reason": null,
+        "moves": 18,
+        "visited": 479,
+        "expanded": 188,
+        "peakFrontier": 306,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 4.745499999999993,
+          "min": 3.9337999999999056,
+          "max": 5.936900000000037,
+          "samples": [
+            4.3881999999999834,
+            5.936900000000037,
+            4.760400000000004,
+            4.745499999999993,
+            3.9337999999999056
+          ]
+        }
+      },
+      "bfs": {
+        "status": "exhausted",
+        "reason": "states",
+        "moves": null,
+        "visited": 3000,
+        "expanded": 2587,
+        "peakFrontier": 523,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 53.940599999999904,
+          "min": 46.61079999999993,
+          "max": 78.601,
+          "samples": [
+            78.601,
+            72.65599999999995,
+            53.940599999999904,
+            46.61079999999993,
+            52.48289999999997
+          ]
+        }
+      }
+    },
+    {
+      "id": "matrix-c6-k4-fixed-b",
+      "group": "seed-matrix",
+      "seed": "engineering-fixed-b",
+      "capacity": 6,
+      "bottles": 6,
+      "oracle": null,
+      "astar": {
+        "status": "solved",
+        "reason": null,
+        "moves": 13,
+        "visited": 85,
+        "expanded": 25,
+        "peakFrontier": 60,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 0.7591999999999643,
+          "min": 0.555699999999888,
+          "max": 0.8095000000000709,
+          "samples": [
+            0.7291999999999916,
+            0.7591999999999643,
+            0.7952999999999975,
+            0.8095000000000709,
+            0.555699999999888
+          ]
+        }
+      },
+      "bfs": {
+        "status": "solved",
+        "reason": null,
+        "moves": 13,
+        "visited": 732,
+        "expanded": 728,
+        "peakFrontier": 129,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 12.964699999999993,
+          "min": 10.728599999999915,
+          "max": 15.556299999999965,
+          "samples": [
+            12.964699999999993,
+            14.453599999999824,
+            10.728599999999915,
+            11.319100000000162,
+            15.556299999999965
+          ]
+        }
+      }
+    },
+    {
+      "id": "state-limit",
+      "group": "limited",
+      "seed": null,
+      "capacity": 3,
+      "bottles": 5,
+      "oracle": {
+        "status": "solved",
+        "distance": 7,
+        "visited": 687
+      },
+      "astar": {
+        "status": "exhausted",
+        "reason": "states",
+        "moves": null,
+        "visited": 1,
+        "expanded": 1,
+        "peakFrontier": 1,
+        "budgets": {
+          "maxStates": 1,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 0.017800000000079308,
+          "min": 0.01749999999992724,
+          "max": 0.01950000000010732,
+          "samples": [
+            0.01950000000010732,
+            0.017800000000079308,
+            0.019000000000005457,
+            0.017600000000129512,
+            0.01749999999992724
+          ]
+        }
+      },
+      "bfs": {
+        "status": "exhausted",
+        "reason": "states",
+        "moves": null,
+        "visited": 1,
+        "expanded": 1,
+        "peakFrontier": 1,
+        "budgets": {
+          "maxStates": 1,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 0.015899999999874126,
+          "min": 0.015000000000100044,
+          "max": 0.01650000000017826,
+          "samples": [
+            0.015899999999874126,
+            0.01650000000017826,
+            0.015899999999874126,
+            0.015000000000100044,
+            0.01569999999992433
+          ]
+        }
+      }
+    },
+    {
+      "id": "depth-limit",
+      "group": "limited",
+      "seed": null,
+      "capacity": 3,
+      "bottles": 5,
+      "oracle": {
+        "status": "solved",
+        "distance": 7,
+        "visited": 687
+      },
+      "astar": {
+        "status": "exhausted",
+        "reason": "depth",
+        "moves": null,
+        "visited": 1,
+        "expanded": 1,
+        "peakFrontier": 1,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 0,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 0.03480000000013206,
+          "min": 0.03439999999977772,
+          "max": 0.03600000000005821,
+          "samples": [
+            0.03600000000005821,
+            0.03509999999982938,
+            0.03480000000013206,
+            0.03439999999977772,
+            0.03459999999995489
+          ]
+        }
+      },
+      "bfs": {
+        "status": "exhausted",
+        "reason": "depth",
+        "moves": null,
+        "visited": 1,
+        "expanded": 1,
+        "peakFrontier": 1,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 0,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 0.01999999999998181,
+          "min": 0.019800000000032014,
+          "max": 0.027800000000070213,
+          "samples": [
+            0.020300000000133878,
+            0.027800000000070213,
+            0.019900000000006912,
+            0.019800000000032014,
+            0.01999999999998181
+          ]
+        }
+      }
+    },
+    {
+      "id": "unbalanced-draft",
+      "group": "invalid",
+      "seed": null,
+      "capacity": 2,
+      "bottles": 2,
+      "oracle": null,
+      "astar": {
+        "status": "invalid",
+        "reason": null,
+        "moves": null,
+        "visited": null,
+        "expanded": null,
+        "peakFrontier": null,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 0.0027000000000043656,
+          "min": 0.002300000000104774,
+          "max": 0.005599999999958527,
+          "samples": [
+            0.005599999999958527,
+            0.0028999999999541615,
+            0.0027000000000043656,
+            0.0025000000000545697,
+            0.002300000000104774
+          ]
+        }
+      },
+      "bfs": {
+        "status": "invalid",
+        "reason": null,
+        "moves": null,
+        "visited": null,
+        "expanded": null,
+        "peakFrontier": null,
+        "budgets": {
+          "maxStates": 3000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 0.002200000000129876,
+          "min": 0.002199999999902502,
+          "max": 0.0022999999998774,
+          "samples": [
+            0.0022999999998774,
+            0.0022999999998774,
+            0.002200000000129876,
+            0.002199999999902502,
+            0.002199999999902502
+          ]
+        }
+      }
+    },
+    {
+      "id": "same-layout-larger-state-budget",
+      "group": "budget-countercase",
+      "seed": "engineering-fixed-a",
+      "capacity": 6,
+      "bottles": 6,
+      "oracle": null,
+      "astar": {
+        "status": "solved",
+        "reason": null,
+        "moves": 18,
+        "visited": 479,
+        "expanded": 188,
+        "peakFrontier": 306,
+        "budgets": {
+          "maxStates": 20000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 3.0801000000001295,
+          "min": 2.8938000000000557,
+          "max": 5.618799999999965,
+          "samples": [
+            4.850699999999961,
+            3.0801000000001295,
+            2.8952999999999065,
+            2.8938000000000557,
+            5.618799999999965
+          ]
+        }
+      },
+      "bfs": {
+        "status": "solved",
+        "reason": null,
+        "moves": 18,
+        "visited": 3513,
+        "expanded": 3504,
+        "peakFrontier": 523,
+        "budgets": {
+          "maxStates": 20000,
+          "maxDepth": 100,
+          "maxMs": 15000
+        },
+        "runtimeMs": {
+          "median": 78.13109999999983,
+          "min": 69.8868,
+          "max": 92.37800000000016,
+          "samples": [
+            69.8868,
+            89.04579999999987,
+            92.37800000000016,
+            74.6996999999999,
+            78.13109999999983
+          ]
+        }
+      }
+    }
+  ]
+}
