@@ -1,6 +1,15 @@
 # PourLab browser acceptance — 21 October 2026
 
-Synthetic QA performed by the root agent through CUA against the local browser build. The independent reviewer inspected the retained mobile screenshot. These are product checks, not player adoption, demand, commercial value or human-difficulty validation. Anonymous public deployment is not yet verified here.
+Synthetic QA performed by the root agent through CUA against the local build and the deployed public product. The independent reviewer inspected the retained mobile screenshot and recorded root's public-browser observations below. These are product checks, not player adoption, demand, commercial value or human-difficulty validation.
+
+## Public v1 release
+
+- [Open PourLab](https://pourlab-huy.hokhachuy1234.chatgpt.site)
+- Hosted source commit: `a1ddb65338d07d3e556ce0869403e26df87bc30d`.
+- Root verified fresh no-cookie HTTP 200 responses for the app and [project guide/case study](https://pourlab-huy.hokhachuy1234.chatgpt.site/about.html).
+- In the actual public app, pasted the custom capacity-three JSON puzzle and ran the real Web Worker. A* returned **7 pours / 48 visited states**, matching the independently checked result.
+
+This commit identifies the hosted v1 runtime. Later proof/documentation commits may advance the repository HEAD without identifying a different deployed runtime.
 
 ## Observed task
 
@@ -17,9 +26,10 @@ Synthetic QA performed by the root agent through CUA against the local browser b
 
 - [Desktop solver view](desktop-solver.jpg)
 - [Mobile solver view](mobile-solver.jpg)
+- [Public deployed solver view](live-solver.jpg)
 
 The search operates on the original level design, as labeled in the UI, rather than a partially played session. It is classical BFS/A* search, not ML or reinforcement learning. A stopped or budget-limited run leaves solvability open.
 
 Core/source checks are separate: 8 tests passed, including exhaustive small layouts and 16 seeded new layouts against a separate labeled-state BFS oracle. Independent fixtures also checked legal replay, mutation boundaries, portable JSON/share roundtrips and hostile-input rejection.
 
-Public URL loading and worker availability, actual edit/search cancellation and hostile-name DOM execution checks remain unrecorded in this note. The measured mobile viewport is not complete accessibility or device coverage.
+Public URL loading and actual worker execution are now verified as recorded above. Actual edit/search cancellation and hostile-name DOM execution checks remain unrecorded in this note. The measured mobile viewport is not complete accessibility or device coverage.
