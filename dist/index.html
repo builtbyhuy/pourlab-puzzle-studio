@@ -2,45 +2,47 @@
 <html lang="en">
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Build, play and inspect water-sort puzzles. An independent browser-first level editor with exact classical search.">
-  <meta name="theme-color" content="#ece8f8">
-  <title>PourLab — Make a little chaos.</title>
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cpath fill='%23694ac5' d='M20 2C14 11 6 20 6 26a14 14 0 0028 0C34 20 26 11 20 2z'/%3E%3C/svg%3E">
+  <meta name="description" content="Create your own water-sort puzzles, play by hand and inspect every step of an exact solution. An independent browser-first puzzle studio.">
+  <meta name="theme-color" content="#ffffff">
+  <title>PourLab — A playground for clear thinking.</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cpath fill='%23000' d='M20 2C14 11 6 20 6 26a14 14 0 0028 0C34 20 26 11 20 2z'/%3E%3C/svg%3E">
+  <link rel="preload" href="./assets/Manrope.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="stylesheet" href="./style.css"><script type="module" src="./app.js"></script>
 </head>
 <body>
-  <a class="skip-link" href="#workbench">Skip to workbench</a>
+  <a class="skip-link" href="#workbench">Skip to studio</a>
   <header class="site-header">
-    <a class="brand" href="./" aria-label="PourLab home"><svg viewBox="0 0 32 40" aria-hidden="true"><path d="M16 2C11 10 3 20 3 26a13 13 0 0026 0C29 20 21 10 16 2z"/><path d="M9 27a7 7 0 007 7"/></svg><span>PourLab<span class="brand-dot">.</span></span></a>
-    <span class="header-caption">A water-sort playground</span>
-    <nav aria-label="Main"><button id="library-open" class="text-button">My levels <span id="saved-count" class="count">0</span></button><button id="help-open" class="text-button">How it works <span aria-hidden="true">↗</span></button></nav>
+    <a class="brand" href="./" aria-label="PourLab home"><svg viewBox="0 0 32 40" aria-hidden="true"><path d="M16 2C11 10 3 20 3 26a13 13 0 0026 0C29 20 21 10 16 2z"/><path d="M9 27a7 7 0 007 7"/></svg><span>PourLab</span></a>
+    <nav aria-label="Main"><a href="#workbench" class="nav-studio">Studio</a><a href="./about.html" class="nav-about">The project</a><button id="help-open" class="text-button">How it works</button><button id="library-open" class="nav-library">My levels <span id="saved-count" class="count">0</span></button></nav>
   </header>
   <main>
     <section class="intro" aria-labelledby="headline">
-      <div><h1 id="headline">Make a little chaos.</h1><p>Arrange the colors. Try your hands.<br>Find the shortest way back to order.</p></div>
-      <div class="intro-note"><svg viewBox="0 0 72 50" aria-hidden="true"><path d="M4 32q24-30 54-13m-8-13 12 14-18 5"/></svg><p>Your own puzzles,<br>from the first drop.</p></div>
+      <img class="hero-art" src="./assets/glass-study.png" alt="" aria-hidden="true" width="1200" height="800" fetchpriority="high">
+      <h1 id="headline">A playground<br>for clear thinking.</h1>
+      <div class="intro-bottom"><p>Make your own puzzle.<br>Find your way through.</p><a class="primary hero-action" href="#workbench">Open studio <span aria-hidden="true">↗</span></a></div>
     </section>
     <section id="workbench" class="workspace" aria-label="Puzzle workbench" tabindex="-1">
       <div class="workspace-top"><div class="name-wrap"><label class="sr-only" for="level-name">Level name</label><input id="level-name" maxlength="60" value="Four-color study" autocomplete="off"><span id="draft-state">Unsaved draft</span></div><div class="file-actions"><button id="save" class="secondary">Save level</button><button id="share" class="icon-button" aria-label="Copy link to this level" title="Copy level link">↗</button><button id="portable-open" class="icon-button" aria-label="Import or export JSON" title="Import or export JSON">{ }</button></div></div>
       <div class="workspace-body">
         <div class="studio">
           <div class="stage-toolbar"><div class="modes" role="group" aria-label="Workbench mode"><button data-mode="edit" class="active" aria-pressed="true">Create</button><button data-mode="play" aria-pressed="false">Play</button><button data-mode="review" aria-pressed="false" id="review-tab" disabled>Review</button></div><div class="quick-actions"><button id="undo" class="text-button" disabled>↶ Undo</button><button id="reset" class="text-button">Reset</button></div></div>
-          <div class="stage-heading"><h2 id="stage-title">Every good puzzle starts with a mess.</h2><p id="stage-instruction">Choose a color, then paint a slot. Fill each bottle from bottom to top.</p></div>
+          <div class="stage-heading"><h2 id="stage-title">Build your arrangement.</h2><p id="stage-instruction">Choose a color, then paint a slot. Fill each bottle from bottom to top.</p></div>
           <div id="bottle-board" class="bottle-board" aria-label="Bottles"></div>
           <div id="editor-footer" class="editor-footer"><button id="add-bottle" class="add-bottle"><span aria-hidden="true">＋</span> Add bottle</button><span><span id="bottle-total">6</span> / 12 bottles</span></div>
           <div id="playback" class="playback" hidden><div class="playback-top"><span id="step-label">Start</span><span id="step-total"></span></div><label class="sr-only" for="step-slider">Solution step</label><input id="step-slider" type="range" min="0" max="0" value="0"><div class="playback-buttons"><button id="previous" class="secondary">← Previous</button><button id="autoplay" class="primary">Play solution</button><button id="next" class="secondary">Next →</button></div></div>
           <div id="play-summary" class="play-summary" hidden></div>
-          <div class="board-footnote"><span class="small-drop" aria-hidden="true">●</span><span id="board-note">Small numbers identify colors without relying on color alone.</span></div>
+          <section class="inventory-section"><div class="section-heading"><h2>Color inventory</h2><span id="unit-count"></span></div><div class="inventory-row"><div id="inventory" class="inventory"></div><p id="validation" class="validation"></p></div></section>
+          <div class="board-footnote"><span class="small-drop" aria-hidden="true"></span><span id="board-note">Numbers identify colors, so every move is clear.</span></div>
         </div>
         <aside class="inspector" aria-label="Level tools">
-          <section id="paint-tools"><div class="section-heading"><h2>Your palette</h2><span>8 colors</span></div><div id="palette" class="palette" role="group" aria-label="Paint color"></div><button id="eraser" class="eraser" aria-pressed="false">⌫ Eraser <span>removes this slot + above</span></button><label class="capacity-label" for="capacity">Bottle capacity<select id="capacity"><option>2</option><option>3</option><option selected>4</option><option>5</option><option>6</option></select></label><button id="clear" class="text-button destructive">Clear all colors</button></section>
-          <section class="inventory-section"><div class="section-heading"><h2>Color inventory</h2><span id="unit-count"></span></div><div id="inventory" class="inventory"></div><p id="validation" class="validation"></p></section>
-          <section class="solver-section"><div class="section-heading"><h2>Find the way out</h2><span class="spark" aria-hidden="true">✳</span></div><p class="muted">Solve the original arrangement. Every shortest solution is replayed and checked with classical search.</p><label class="field-label" for="algorithm">Search method<select id="algorithm"><option value="astar">A* · segment heuristic</option><option value="bfs">Breadth-first search</option></select></label><details class="budgets"><summary>Search limits</summary><div class="budget-fields"><label>States<input id="max-states" type="number" min="1" max="200000" step="1" value="80000"></label><label>Seconds<input id="max-seconds" type="number" min="0.1" max="15" step="0.1" value="5"></label><label>Depth<input id="max-depth" type="number" min="0" max="200" value="100"></label></div><p>Hard limits keep the browser responsive. A stopped search leaves solvability open.</p></details><button id="solve" class="primary solve-button">Analyze original level <span aria-hidden="true">↗</span></button><button id="cancel" class="secondary" hidden>Stop search</button><div id="solver-result" class="solver-result" aria-live="polite"><span class="result-dot"></span><p>Ready when you are.</p></div></section>
+          <section id="paint-tools"><div class="section-heading"><h2>Your palette</h2><span>8 colors</span></div><div id="palette" class="palette" role="group" aria-label="Paint color"></div><button id="eraser" class="eraser" aria-pressed="false"><span class="eraser-title">⌫ Eraser</span><span>Remove this slot and above</span></button><label class="capacity-label" for="capacity">Bottle capacity<select id="capacity"><option>2</option><option>3</option><option selected>4</option><option>5</option><option>6</option></select></label><button id="clear" class="text-button destructive">Clear all colors</button></section>
+          <section class="solver-section"><div class="section-heading"><h2>A way through</h2><span class="spark" aria-hidden="true">✳</span></div><p class="muted">Find a shortest route through your original arrangement. Every move is checked.</p><label class="field-label" for="algorithm">Search method<select id="algorithm"><option value="astar">A* · segment heuristic</option><option value="bfs">Breadth-first search</option></select></label><details class="budgets"><summary>Search limits</summary><div class="budget-fields"><label>States<input id="max-states" type="number" min="1" max="200000" step="1" value="80000"></label><label>Seconds<input id="max-seconds" type="number" min="0.1" max="15" step="0.1" value="5"></label><label>Depth<input id="max-depth" type="number" min="0" max="200" value="100"></label></div><p>A stopped search leaves solvability open. Increase a limit or simplify your level.</p></details><button id="solve" class="primary solve-button">Analyze original level <span aria-hidden="true">↗</span></button><button id="cancel" class="secondary" hidden>Stop search</button><div id="solver-result" class="solver-result" aria-live="polite"><span class="result-dot"></span><p>Ready when you are.</p></div></section>
+          <p class="inspector-note">Classical search. Real moves.<br>No account or upload.</p>
         </aside>
       </div>
     </section>
-    <section class="below-workspace"><div><h2>Another starting point?</h2><p>Shuffle a repeatable study or start with empty glass.</p></div><form id="generate-form" class="generator"><label for="seed">Seed<input id="seed" maxlength="40" value="little-chaos"></label><label for="colors">Colors<select id="colors"><option>2</option><option>3</option><option selected>4</option><option>5</option><option>6</option><option>7</option><option>8</option></select></label><button class="secondary" type="submit">Shuffle a level</button><button id="blank" class="text-button" type="button">Start blank</button></form></section>
-    <footer class="page-footer"><p>Made for curious minds & messy colors.</p><p><a href="./about.html">About this project</a> <span aria-hidden="true">·</span> Works in your browser. No account. No upload.</p></footer>
+    <section class="below-workspace"><div><h2>A different starting point.</h2><p>Create a repeatable shuffle or begin with empty glass.</p></div><form id="generate-form" class="generator"><label for="seed">Seed<input id="seed" maxlength="40" value="little-chaos"></label><label for="colors">Colors<select id="colors"><option>2</option><option>3</option><option selected>4</option><option>5</option><option>6</option><option>7</option><option>8</option></select></label><button class="secondary" type="submit">Shuffle a level</button><button id="blank" class="text-button" type="button">Start blank</button></form></section>
+    <footer class="page-footer"><a class="footer-wordmark" href="./">PourLab</a><p>A little room to think.</p><p><a href="./about.html">About the project</a><a href="https://github.com/builtbyhuy/pourlab-puzzle-studio">Source code</a></p></footer>
   </main>
   <div id="notice" class="notice" role="status" aria-live="polite" hidden></div>
   <dialog id="library-dialog" class="dialog library-dialog"><div class="dialog-heading"><h2>My levels</h2><button data-close class="icon-button" aria-label="Close my levels">×</button></div><p class="muted">Saved on this browser. Export a JSON backup before clearing browser data.</p><div id="library-list"></div><button id="export-library" class="secondary">Export all levels</button></dialog>

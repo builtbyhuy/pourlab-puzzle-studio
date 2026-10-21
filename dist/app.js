@@ -123,7 +123,7 @@ function render() {
   $('reset').hidden = mode === 'edit';
   $('reset').textContent = mode === 'review' ? 'First step' : 'Reset';
   document.querySelectorAll('[data-mode]').forEach(button => { const on = button.dataset.mode === mode; button.classList.toggle('active', on); button.setAttribute('aria-pressed', on); });
-  $('stage-title').textContent = mode === 'edit' ? 'Every good puzzle starts with a mess.' : mode === 'play' ? isSolved(game) ? 'A little order, beautifully restored.' : 'Your move.' : 'There is a way through the chaos.';
+  $('stage-title').textContent = mode === 'edit' ? 'Build your arrangement.' : mode === 'play' ? isSolved(game) ? 'Order, restored.' : 'Your move.' : 'Every move, accounted for.';
   $('stage-instruction').textContent = mode === 'edit' ? 'Choose a color, then paint a slot. Fill each bottle from bottom to top.' : mode === 'play' ? 'Choose a source bottle, then a matching or empty target. Dashed bottles are legal targets.' : 'A shortest legal solution. Follow each pour, at your own pace.';
   if (mode === 'play') $('play-summary').textContent = isSolved(game) ? `Solved in ${history.length} ${history.length === 1 ? 'pour' : 'pours'}. Try the solver to compare with the shortest route.` : `${history.length} ${history.length === 1 ? 'pour' : 'pours'} so far. ${selected === null ? 'Select a source bottle.' : `Bottle ${selected + 1} selected. Choose a target or select it again to cancel.`}`;
   if (mode === 'review') {
@@ -280,4 +280,3 @@ $('share').onclick = async () => {
 window.addEventListener('hashchange', () => { try { const shared = decodeShare(location.hash); if (shared && safeReplace()) setLevel(shared, shared.name); } catch (error) { tell(error.message); } });
 window.addEventListener('beforeunload', () => { if (dirty) storeDraft(); });
 render();
-

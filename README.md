@@ -1,10 +1,18 @@
 # PourLab
 
-[Use the online studio](https://pourlab-huy.hokhachuy1234.chatgpt.site) · [Guide & case study](https://pourlab-huy.hokhachuy1234.chatgpt.site/about.html) · [Detailed engineering case study](docs/case-study.md)
+[Use the online studio](https://pourlab-huy.hokhachuy1234.chatgpt.site) · [Guide & case study](https://pourlab-huy.hokhachuy1234.chatgpt.site/about.html) · [Detailed engineering case study](docs/CASE-STUDY.md)
 
 A usable water-sort puzzle workbench: build your own levels, play them, and inspect a shortest checked solution. Runs entirely in your browser with no account, backend, upload, tracking, build step or runtime dependency.
 
 This independent project was built with AI coding assistance. It uses **classical search**, not machine learning or reinforcement learning. The included study is synthetic; no player research, studio adoption, commercial results or human difficulty prediction is claimed.
+
+## The studio
+
+The interface was redesigned on 21 October 2026 around a white gallery shell, oversized regular Manrope type, original iridescent glass artwork and a monochrome workbench. The actual bottles stay interactive: the visual treatment does not replace editing, play or exact solving with a landing-page mockup.
+
+![PourLab redesigned desktop studio](docs/evidence/redesign-desktop.jpg)
+
+[Mobile redesign](docs/evidence/redesign-mobile.jpg) · [Design decisions](docs/DESIGN.md) · [Artwork and font provenance](dist/assets/SOURCES.md)
 
 ## Try the whole workflow
 
@@ -42,7 +50,9 @@ Actual browser checks on 21 October 2026 used a novel three-color level: A* foun
 
 [Desktop worker/replay evidence](docs/evidence/desktop-solver.jpg) · [Mobile evidence](docs/evidence/mobile-solver.jpg)
 
-![PourLab browser workbench with a verified seven-pour route](docs/evidence/desktop-solver.jpg)
+The worker/replay images above record the original release. The current visual design appears in the studio image near the top of this README.
+
+The redesigned interface was also checked in a real browser on 21 October 2026: custom JSON import, a seven-pour A* result, keyboard replay to 7/7, a legal manual pour and Undo, erase/repair inventory validation, named save and the library dialog. Both the studio and case-study page were inspected at a 390px viewport with no horizontal document overflow. All eight core/portability tests passed. These are observed checks, not a user study or complete accessibility audit.
 
 ## Rule and data contract
 
@@ -89,4 +99,3 @@ The app links to the public [project guide](dist/about.html). See [the case stud
 ## Tóm tắt tiếng Việt
 
 PourLab là công cụ tạo, chơi và tìm lời giải ngắn nhất cho trò xếp nước, chạy trực tiếp trong trình duyệt. Người dùng tự tạo màn, lưu ở trình duyệt, nhập/xuất JSON hoặc chia sẻ bằng liên kết. A* và BFS là thuật toán tìm kiếm cổ điển; hết ngân sách tìm kiếm **không có nghĩa là vô nghiệm**. Đây là sản phẩm cá nhân có AI hỗ trợ viết mã, chưa có bằng chứng người dùng thực tế hay hiệu quả thương mại.
-
