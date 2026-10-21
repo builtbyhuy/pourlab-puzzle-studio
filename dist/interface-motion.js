@@ -3,6 +3,14 @@
 const board = document.getElementById('bottle-board');
 const reduced = matchMedia('(prefers-reduced-motion: reduce)');
 let keyboard = false, previous = null, active = null, animations = [];
+let enabled = !reduced.matches;
+const preference = document.getElementById('motion-preference');
+function syncPreference() {
+  document.documentElement.dataset.interactiveMotion = enabled ? 'on' : 'off';
+  if (preference) { preference.setAttribute('aria-pressed', String(enabled)); preference.textContent = enabled ? 'Motion on' : 'Motion off'; preference.disabled = reduced.matches; preference.title = reduced.matches ? 'Motion is off because your system requests reduced motion.' : 'Turn interactive motion on or off'; }
+}
+if (preference) preference.onclick = () => { enabled = !enabled; syncPreference(); if (!enabled) cancel(); };
+syncPreference();
 document.addEventListener('keydown', () => { keyboard = true; }, { capture: true });
 document.addEventListener('pointerdown', () => { keyboard = false; }, { capture: true, passive: true });
 function cancel() { animations.forEach(animation => animation.cancel()); animations = []; active?.remove(); active = null; }
@@ -31,7 +39,7 @@ function transfer(before, after) {
 }
 function drawPour(move, after) {
   cancel();
-  if (keyboard || reduced.matches || document.hidden) return;
+  if (!enabled || keyboard || reduced.matches || document.hidden) return;
   const source = after.bottles[move.from], target = after.bottles[move.to];
   if (source.rect.bottom < 0 || source.rect.top > innerHeight || target.rect.bottom < 0 || target.rect.top > innerHeight) return;
   const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
@@ -54,12 +62,19 @@ function drawPour(move, after) {
 }
 if (board) {
   previous = snapshot();
+  document.documentElement.dataset.instrumentMode = previous.mode;
   new MutationObserver(() => {
-    const after = snapshot(), move = transfer(previous, after); previous = after;
-    if (move) drawPour(move, after); else cancel();
+    const after = snapshot(), modeChanged = previous && previous.mode !== after.mode, move = transfer(previous, after); previous = after;
+    document.documentElement.dataset.instrumentMode = after.mode;
+    if (move) drawPour(move, after); else {
+      cancel();
+      if (modeChanged && enabled && !keyboard && !reduced.matches && !document.hidden) {
+        after.bottles.forEach((bottle, i) => { if (bottle.glass.animate) animations.push(bottle.glass.animate([{ transform: 'translateY(7px)', opacity: .45 }, { transform: 'none', opacity: 1 }], { duration: 240, delay: i * 18, easing: 'cubic-bezier(.2,.8,.2,1)' })); });
+      }
+    }
   }).observe(board, { childList: true });
 }
 addEventListener('resize', cancel, { passive: true });
 addEventListener('scroll', cancel, { passive: true });
 document.addEventListener('visibilitychange', cancel);
-reduced.addEventListener('change', () => { if (reduced.matches) cancel(); });
+reduced.addEventListener('change', () => { if (reduced.matches) { enabled = false; syncPreference(); cancel(); } });

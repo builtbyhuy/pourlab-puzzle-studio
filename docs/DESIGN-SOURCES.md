@@ -1,36 +1,26 @@
-# PourLab design sources
+# PourLab design sources — Cosmos instrument direction
 
-Recorded 21 October 2026. Preserve the approved white / black / glass design. Color identifies liquid and state; app chrome remains quiet. Designer pages were opened and their real content inspected in a browser before selection.
+Recorded 21 October 2026. The user requested a new direction because PourLab and QuoteLens looked too similar. This replaces the prior Lifemed white/black/glass constraint for PourLab.
 
-## Selected references and translation
+## Actual reference inspection
 
-### Water Sort — play states and tube readability
+The public Cosmos Explore page, a single search for “playful interface”, and the following two full element pages were inspected visually in a dedicated browser tab. The full artwork, not just a result title, informed the decisions. No account was created, and no login/quota gate was bypassed.
 
-[Water Sort: Game UI design, Gautam Baluni](https://www.behance.net/gallery/193054545/Water-Sort-Game-UI-design), published March 2024, shows level choice, play, pause, completion and support controls. Transparent tube outlines and distinct liquid bands keep the puzzle readable; the board occupies the center and support actions sit below.
+| Actual source | Observed | Transfer to PourLab | Excluded |
+|---|---|---|---|
+| [Michael Redfearn, element 513931804](https://www.cosmos.so/e/513931804), uploaded 23 December 2025 | Dark phone canvas, strong bright pill-shaped action rows, playful rounded forms, quiet surrounding controls | Deep stage behind the playable board; rounded Create/Play/Review transport; solid color and clear state labels | Phone layout, brand, task content, artwork and code |
+| [Whipsaw Sound Workshop, element 624718523](https://www.cosmos.so/e/624718523), uploaded 18 June 2026 | A tactile electronic instrument with distinct grouped knobs, physical depth and clear functional zones | A separate lilac control console, consistent rounded physical buttons, palette and search groups, direct feedback | Hardware image, product identity, copied knobs/model and exact arrangement |
 
-PourLab uses that task hierarchy and explicit play states, while retaining its own editor, legal-target hints, Undo, bounded A*/BFS search and step-by-step state trace. Every trace step must describe a real legal pour and agree with the displayed bottles and current step. This application-specific trace is original; the reference supplies no solver, editor or search algorithm.
+These two inspected references are static images. They establish composition, form and hierarchy, not measured motion timing, shipped software behavior, an endorsement or a reusable asset license. Cosmos is a reference gallery, not a license. No gallery imagery, model, video, code or designer private material is bundled; no designer was contacted and no asset/service was purchased. The CSS/SVG, controls and state-linked animation are original implementation.
 
-The reference's purple background, yellow dimensional type, coins, store and reward presentation are excluded. [Water Sort Puzzle Game, Thu Linh Nguyen](https://www.behance.net/gallery/241712993/Water-Sort-Puzzle-Game), published January 2026, was also inspected for glass silhouettes and liquid separation, but its promotional game-art theme is not adopted.
+## Typography and runtime
 
-### Lifemed — approved glass composition
+- [Barlow Condensed Bold, official Google Fonts source](https://github.com/google/fonts/blob/main/ofl/barlowcondensed/BarlowCondensed-Bold.ttf). Downloaded unmodified from the official Google Fonts raw distribution, 109,912 bytes. [Official OFL notice](https://raw.githubusercontent.com/google/fonts/main/ofl/barlowcondensed/OFL.txt) verified on this date: Copyright 2017 The Barlow Project Authors; SIL Open Font License 1.1 permits use, embedding and redistribution with its notice. Bundled as assets/BarlowCondensed-Bold.ttf and assets/BarlowCondensed-OFL.txt.
+- Existing local Manrope remains UI copy under its separate bundled assets/OFL.txt. No font runtime service is required.
+- The former Three.js renderer and glass fallback are not loaded by the current studio or guide. Their files and separate MIT/source notices remain historical artifacts. No third-party JavaScript runtime is active in the redesigned product.
 
-[Lifemed Web & Motion, Mubien](https://www.behance.net/gallery/252323471/Lifemed-Web-Motion), published July 2026, informs whitespace, normal-weight black type, compact actions and layered glass. PourLab translates this into an **original volumetric liquid loop and separate droplet**, rendered as real geometry with changing reflections. The sculpture is an art-directed glass form, not a fluid simulation or a solver result. The game board's bottles and liquid states remain functional project artwork.
+## Product fit and deliberate contrast
 
-[GEO, Dennis Sucgang](https://www.behance.net/gallery/46931763/UI-and-UX-Design-for-a-3D-Puzzle-game), published January 2017, is a secondary reference for one readable central 3D object and quiet surrounding controls. It is an old concept case, not evidence of a released modern product. Its cyan/orange theme, models and mobile HUD are excluded. Ramotion's [Puzzle Website Design](https://www.behance.net/gallery/215527231/Puzzle-Website-Design) was checked and rejected as gameplay evidence: its subject is AI accounting/tax software, not a puzzle game.
+PourLab is a playful construction, manual-play and exact-search tool. Its central colored board and persistent mode rail should invite experimentation; the console separates editing from analysis. QuoteLens instead handles source-linked purchasing decisions. PourLab now has condensed display typography, a saturated stage, full-width board, rounded physical controls and state-linked game motion rather than the white glass hero and purchasing-workbench grammar.
 
-## Observed motion versus PourLab timing
-
-Lifemed's embedded video was observed advancing automatically between visual compositions. Exact source timing, easing and live-site triggers were not measured. The Water Sort and GEO sections inspected were static images: they establish layouts/states, not a demonstrated pouring animation or physics implementation.
-
-PourLab chooses its own motion: select a source clearly, expose legal targets, then show the actual changed state and matching trace step. Suggested tuning ranges are 140–200 ms for selection, 200–350 ms for a step/Undo transition, and 550–800 ms only if a full lift/tilt/stream/lower pour is implemented. These are design ranges, not a statement that such a full pouring animation already exists. Search progress follows actual work and results; no artificial delay is added. Reduced-motion presentation keeps states and trace readable without long tilt/translation. The hero's pause, opt-in reduced-motion behavior and offscreen suspension are documented in [MOTION-ENGINE.md](MOTION-ENGINE.md).
-
-## Source and license boundaries
-
-- Original project code, runtime geometry, bottle artwork and state-trace presentation use the repository's [MIT license](../LICENSE). No gallery assets are included in that grant.
-- Three.js **0.180.0 / r180** is vendored locally with its own [MIT license](../dist/vendor/three/LICENSE), which must remain with redistributed copies. Rendering-library rights are separate from gallery-art rights.
-- Manrope keeps its SIL Open Font License. The separate original generated PNG fallback and font provenance are in [asset SOURCES.md](../dist/assets/SOURCES.md). The PNG is not used as the live sculpture's geometry.
-- Both Water Sort pages displayed **All Rights Reserved**; Lifemed and GEO displayed **Attribution / Non-commercial / No Derivatives** badges. No commercial source/asset grant was verified. Gautam's displayed “Game UI Design — From US$150” is a custom-service price, not a price for downloading this case or its source.
-
-No gallery models, images, videos, code or branded components were copied. No designer was contacted and no paid service or asset was purchased. Final integrated motion, usability and performance require their own browser evidence; these source notes are not user acceptance.
-
-Integrated geometry, recordings, narrow-screen checks and interaction-trace findings are recorded separately in [MOTION-ACCEPTANCE.md](MOTION-ACCEPTANCE.md).
+Actual browser interaction, reduced motion, keyboard, mobile and search-state checks must be evaluated on the integrated product; reference notes alone are not acceptance evidence.

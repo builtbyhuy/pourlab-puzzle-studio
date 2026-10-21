@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="Create your own water-sort puzzles, play by hand and inspect every step of an exact solution. An independent browser-first puzzle studio.">
-  <meta name="theme-color" content="#ffffff">
+  <meta name="theme-color" content="#24133d">
   <title>PourLab — A playground for clear thinking.</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cpath fill='%23000' d='M20 2C14 11 6 20 6 26a14 14 0 0028 0C34 20 26 11 20 2z'/%3E%3C/svg%3E">
-  <link rel="preload" href="./assets/Manrope.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="./assets/BarlowCondensed-Bold.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="stylesheet" href="./style.css"><script type="module" src="./app.js"></script>
-<link rel="stylesheet" href="motion.css"><script type="module" src="motion3d.js"></script><script type="module" src="interface-motion.js"></script>
+<link rel="stylesheet" href="instrument.css?v=cosmos-20261021"><link rel="stylesheet" href="motion.css?v=instrument-20261021-2"><script type="module" src="interface-motion.js?v=instrument-20261021-2"></script>
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="PourLab">
 <meta property="og:title" content="PourLab | Build, Play and Understand a Puzzle">
@@ -23,13 +23,12 @@
   <a class="skip-link" href="#workbench">Skip to studio</a>
   <header class="site-header">
     <a class="brand" href="./" aria-label="PourLab home"><svg viewBox="0 0 32 40" aria-hidden="true"><path d="M16 2C11 10 3 20 3 26a13 13 0 0026 0C29 20 21 10 16 2z"/><path d="M9 27a7 7 0 007 7"/></svg><span>PourLab</span></a>
-    <nav aria-label="Main"><a href="#workbench" class="nav-studio">Studio</a><a href="./about.html" class="nav-about">The project</a><button id="help-open" class="text-button">How it works</button><button id="library-open" class="nav-library">My levels <span id="saved-count" class="count">0</span></button></nav>
+    <nav aria-label="Main"><a href="./about.html" class="nav-about">The project</a><button id="help-open" class="text-button">How to play</button><button id="library-open" class="nav-library">My levels <span id="saved-count" class="count">0</span></button></nav>
   </header>
   <main>
-    <section class="intro" aria-labelledby="headline" data-motion-scene="pourlab">
-      <img class="hero-art" src="./assets/glass-study.png" alt="" aria-hidden="true" width="1200" height="800" fetchpriority="high">
-      <h1 id="headline">A playground<br>for clear thinking.</h1>
-      <div class="intro-bottom"><p>Make your own puzzle.<br>Find your way through.</p><a class="primary hero-action" href="#workbench">Open studio <span aria-hidden="true">↗</span></a></div>
+    <section class="intro" aria-labelledby="headline">
+      <h1 id="headline">Make a little <span>order.</span></h1>
+      <div class="intro-meta"><div class="intro-copy"><p>A water-sort playground. Make your own puzzle, play a few moves, find a way through.</p><a href="./about.html">Inside the studio <span aria-hidden="true">↗</span></a><button id="motion-preference" class="motion-preference" aria-pressed="true" title="Turn interactive motion on or off">Motion on</button></div><div class="intro-stamp" aria-hidden="true"><svg viewBox="0 0 100 100"><path d="M45 0h10l3 29 20-21 7 7-17 24 31-1v10l-30 7 25 18-6 8-28-13 8 29-10 3-15-27-9 27-10-3 2-31L8 80l-6-8 24-21L0 44l2-10 30 1L18 9l9-5 18 25z"/></svg></div></div>
     </section>
     <section id="workbench" class="workspace" aria-label="Puzzle workbench" tabindex="-1">
       <div class="workspace-top"><div class="name-wrap"><label class="sr-only" for="level-name">Level name</label><input id="level-name" maxlength="60" value="Four-color study" autocomplete="off"><span id="draft-state">Unsaved draft</span></div><div class="file-actions"><button id="save" class="secondary">Save level</button><button id="share" class="icon-button" aria-label="Copy link to this level" title="Copy level link">↗</button><button id="portable-open" class="icon-button" aria-label="Import or export JSON" title="Import or export JSON">{ }</button></div></div>

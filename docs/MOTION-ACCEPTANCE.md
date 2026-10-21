@@ -1,3 +1,5 @@
+> Historical record — superseded on 21 October 2026 by the Cosmos instrument redesign. The active product no longer loads the decorative Three.js hero or glass fallback. Current interface feedback and source decisions are in DESIGN.md and DESIGN-SOURCES.md. The observations below describe the earlier release only.
+
 # Integrated motion acceptance — 21 October 2026
 
 This is an observed browser check, separate from user research and visual preference approval.

@@ -1,3 +1,5 @@
+> Historical record — superseded on 21 October 2026 by the Cosmos instrument redesign. The active product no longer loads the decorative Three.js hero or glass fallback. Current interface feedback and source decisions are in DESIGN.md and DESIGN-SOURCES.md. The observations below describe the earlier release only.
+
 # Live glass hero
 
 The hero now has a local WebGL scene. It does not rotate, warp, or map the fallback PNG onto a plane. Three.js r180 / 0.180.0 is pinned inside `dist/vendor/three/` with its MIT license and source URLs. `motion3d.js` is identical in QuoteLens and PourLab; the `data-motion-scene` value chooses the sculpture.

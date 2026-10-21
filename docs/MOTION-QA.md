@@ -1,3 +1,5 @@
+> Historical record — superseded on 21 October 2026 by the Cosmos instrument redesign. The active product no longer loads the decorative Three.js hero or glass fallback. Current interface feedback and source decisions are in DESIGN.md and DESIGN-SOURCES.md. The observations below describe the earlier release only.
+
 # Motion QA — QuoteLens and PourLab
 
 Date: 21 October 2026. Scope: local motion upgrade, preserving each existing app and its data contracts. This record distinguishes source review, automated regression checks and actual rendered observations. No deployment or customer acceptance is established by these checks.

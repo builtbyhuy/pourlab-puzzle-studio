@@ -2,23 +2,23 @@
 
 [Use the online studio](https://pourlab-huy.hokhachuy1234.chatgpt.site) · [Guide & case study](https://pourlab-huy.hokhachuy1234.chatgpt.site/about.html) · [Detailed engineering case study](docs/CASE-STUDY.md)
 
-A usable water-sort puzzle workbench: build your own levels, play them, and inspect a shortest checked solution. Runs entirely in your browser with no account, backend, upload, tracking or build step. The optional glass hero uses locally vendored Three.js; the solver has no package dependencies.
+A usable water-sort puzzle workbench: build your own levels, play them, and inspect a shortest checked solution. Runs entirely in your browser with no account, backend, upload, tracking or build step. The studio uses native browser APIs and locally hosted open-source fonts; it has no active third-party JavaScript runtime dependency.
 
 This independent project was built with AI coding assistance. It uses **classical search**, not machine learning or reinforcement learning. The included study is synthetic; no player research, studio adoption, commercial results or human difficulty prediction is claimed.
 
 ## The studio
 
-The interface was redesigned on 21 October 2026 around a white gallery shell, oversized regular Manrope type, original iridescent glass artwork and a monochrome workbench. The actual bottles stay interactive: the visual treatment does not replace editing, play or exact solving with a landing-page mockup.
+The current interface is a game-first puzzle instrument: a deep violet stage, Barlow Condensed display type, vivid numbered bottles, physical rounded mode controls and a lilac tool console. The playable board is the opening experience. This direction supersedes the earlier white/glass gallery design and deliberately differs from the editorial purchasing workspace in QuoteLens. [Current source-to-decision notes](docs/DESIGN-SOURCES.md) record the two Cosmos references actually inspected.
 
-![PourLab redesigned desktop studio](docs/evidence/redesign-desktop.jpg)
+![PourLab redesigned desktop studio](docs/evidence/cosmos-desktop.jpg)
 
-[Mobile redesign](docs/evidence/redesign-mobile.jpg) · [Design decisions](docs/DESIGN.md) · [Artwork and font provenance](dist/assets/SOURCES.md)
+[Mobile redesign](docs/evidence/cosmos-mobile.jpg) · [Current redesign browser checks](docs/evidence/COSMOS-REDESIGN-QA.md) · [Design decisions](docs/DESIGN.md) · [Artwork and font provenance](dist/assets/SOURCES.md)
 
 ## Try the whole workflow
 
-The current opening contains a live volumetric glass scene, not an animated image. Pause it with the visible control; reduced-motion visitors start with static artwork. Single legal pours and adjacent replay steps receive a short interruptible visual trace. Game state updates immediately; the animation does not simulate fluid physics. See [motion design and limitations](docs/MOTION-ENGINE.md) and [project-fit reference notes](docs/DESIGN-SOURCES.md).
+The active product has no decorative 3D hero. Short mode transitions, source selection and an interruptible trace explain actual legal pours and adjacent replay steps. Game state updates immediately; motion does not simulate fluid physics. The visible Motion control disables interactive feedback, and reduced-motion visitors start with it off. The earlier Three.js engine and its recordings remain historical artifacts, not the current studio. See [current design decisions](docs/DESIGN.md).
 
-![Actual browser recording of the live glass](docs/evidence/motion.gif)
+[Historical glass-hero recording](docs/evidence/motion.gif) — retained from the superseded presentation.
 
 1. Paint a slot in **Create** mode, from the bottom upward. Every color also has a number.
 2. Balance each used color to a multiple of the bottle capacity; add empty bottles if needed.
@@ -56,7 +56,7 @@ Actual browser checks on 21 October 2026 used a novel three-color level: A* foun
 
 The worker/replay images above record the original release. The current visual design appears in the studio image near the top of this README.
 
-The redesigned interface was also checked in a real browser on 21 October 2026: custom JSON import, a seven-pour A* result, keyboard replay to 7/7, a legal manual pour and Undo, erase/repair inventory validation, named save and the library dialog. Both the studio and case-study page were inspected at a 390px viewport with no horizontal document overflow. All eight core/portability tests passed. These are observed checks, not a user study or complete accessibility audit.
+The earlier white/glass interface was also checked in a real browser on 21 October 2026: custom JSON import, a seven-pour A* result, keyboard replay to 7/7, a legal manual pour and Undo, erase/repair inventory validation, named save and the library dialog. Both the studio and case-study page were inspected at a 390px viewport with no horizontal document overflow. All eight core/portability tests passed. These historical observations are not acceptance of the later instrument redesign, a user study or a complete accessibility audit.
 
 ## Rule and data contract
 
@@ -95,7 +95,7 @@ Named levels and a recovery draft use `localStorage` in the current browser orig
 | `dist/worker.js` | Isolated search protocol and progress messages |
 | `dist/portable.js` | Strict JSON and bounded URL-hash serialization |
 | `dist/app.js` | DOM interaction, history, storage, search cancellation, replay controls |
-| `dist/index.html`, `style.css` | Accessible native controls and responsive glass workbench |
+| `dist/index.html`, `style.css`, `instrument.css`, `motion.css` | Native controls, responsive puzzle instrument and state-linked feedback |
 | `tests/` | Independent oracle and rule/portability checks |
 
 The app links to the public [project guide](dist/about.html). See [the case study](docs/CASE-STUDY.md) for tradeoffs, proof boundaries and next experiments.
