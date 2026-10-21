@@ -8,7 +8,7 @@ This independent project was built with AI coding assistance. It uses **classica
 
 ## The studio
 
-The interface connects creating a water-sort level, trying legal moves and reviewing a checked solution. See [current design decisions](docs/DESIGN.md) for the opening experience, layout, typography and interaction choices. The [earlier Cosmos source notes](docs/DESIGN-SOURCES.md) and corresponding screenshots record that earlier instrument presentation.
+The interface connects creating a water-sort level, trying legal moves and reviewing a checked solution. See [current design decisions](docs/DESIGN.md) for the opening experience, layout, typography and interaction choices. The [earlier Cosmos source notes](docs/DESIGN-SOURCES.md#superseded-cosmos-instrument-direction) and corresponding screenshots record that earlier instrument presentation.
 
 ![PourLab current puzzle studio](docs/evidence/clarity-desktop.png)
 
@@ -16,7 +16,7 @@ The interface connects creating a water-sort level, trying legal moves and revie
 
 ## Start with a complete loop
 
-Import the [three-color reviewer level](dist/assets/reviewer-level.json), try a legal move and Undo, then analyze its original arrangement. The recorded browser run reaches four shortest checked pours and replay 4/4. A one-state budget must remain unresolved; an unbalanced edit must disable Play/search until repaired. [Current replay](docs/evidence/cosmos-solved-desktop.png) · [Recovery repair](docs/evidence/STORAGE-RECOVERY-QA.md).
+Import the [three-color reviewer level](dist/assets/reviewer-level.json), try a legal move and Undo, then analyze its original arrangement. The recorded browser run reaches four shortest checked pours and replay 4/4. A one-state budget must remain unresolved; an unbalanced edit must disable Play/search until repaired. [Current replay](docs/evidence/clarity-replay-2026-10-21.png) · [Recovery repair](docs/evidence/STORAGE-RECOVERY-QA.md).
 
 For the engineering comparison, [40 fixed configurations across 34 layouts](docs/SOLVER-EVALUATION.md) run both A* and BFS, check every solved path independently and expose the effect of search budgets. Run `node scripts/evaluate-solver.mjs --check`; independent optimum coverage and timing limits are explicit in the report.
 
@@ -26,8 +26,8 @@ Short mode transitions, source selection and an interruptible trace explain actu
 
 1. Start with the playable example, or choose **Make your own** and paint a slot in **Edit** mode, from the bottom upward. Every color also has a number.
 2. Balance each used color to a multiple of the bottle capacity; add empty bottles if needed.
-3. Choose **Play**, select a source bottle, then a legal target. Use Undo or Reset freely.
-4. Choose **Find a solution**. Inspect the legal replay with Previous, Next, the slider or playback.
+3. Choose **Play**, select a source bottle, then a legal target. Use **Undo** or **Start over** to revise the manual session.
+4. Choose **Find a solution** to solve the original design, even after manual play. Inspect the legal replay with Previous, Next, the slider or playback.
 5. Save a named level, reopen it from **My puzzles**, export a JSON backup, or copy a link containing the level.
 
 You can create 2–12 bottles with capacity 2–6 and up to eight colors. Palette slots, bottle removal, capacity changes, erasing, editor undo and blank levels work on user-created content. Deterministic shuffling uses the visible seed, selected color count and current capacity. Its balanced inventory does **not** guarantee solvability; the search checks that separately.
@@ -104,7 +104,7 @@ Named levels and a recovery draft use `localStorage` in the current browser orig
 
 ### Moving from the earlier demo address
 
-The current demo address is `https://builtbyhuy.github.io/pourlab-puzzle-studio/`. If you used the [earlier hosted demo](https://pourlab-huy.hokhachuy1234.chatgpt.site/), open it in the browser where you saved your levels, export a library JSON backup from **My levels**, then import that backup at the current address. Export an unsaved current level separately and check the imported levels before removing old copies. Browser storage is tied to its origin; changing the address does not move or erase the old data. There is no automatic redirect or background transfer. Existing shared links continue to target their original host.
+The current demo address is `https://builtbyhuy.github.io/pourlab-puzzle-studio/`. If you used the [earlier hosted demo](https://pourlab-huy.hokhachuy1234.chatgpt.site/), open it in the browser where you saved your levels. Choose **My puzzles** to open the **My levels** dialog, then **Export all levels**. Import that JSON backup at the current address. Export an unsaved current level separately and check the imported levels before removing old copies. Browser storage is tied to its origin; changing the address does not move or erase the old data. There is no automatic redirect or background transfer. Existing shared links continue to target their original host.
 
 The [Pages workflow](.github/workflows/pages.yml) runs the existing regression suite and fixed solver corpus before publishing only `dist/`. It uses GitHub's built-in workflow token and short-lived Pages identity; no separate deployment secret is required. Earlier browser evidence retains its original address and scope.
 
@@ -118,6 +118,7 @@ An unreadable saved library is protected against further writes. **My puzzles** 
 | `dist/worker.js` | Isolated search protocol and progress messages |
 | `dist/portable.js` | Strict JSON and bounded URL-hash serialization |
 | `dist/app.js` | DOM interaction, history, storage, search cancellation, replay controls |
+| `dist/interface-motion.js` | Interruptible selection, mode and legal-pour feedback; motion preference |
 | `dist/index.html`, `style.css`, `playground.css`, `motion.css` | Native controls, responsive playable board and state-linked feedback |
 | `tests/` | Independent oracle and rule/portability checks |
 

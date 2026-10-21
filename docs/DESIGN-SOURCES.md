@@ -15,9 +15,9 @@ The actual product pages were inspected visually in a browser, not inferred from
 
 ## Superseded Cosmos instrument direction
 
-Recorded 21 October 2026. The user requested a new direction because PourLab and QuoteLens looked too similar. This replaces the prior Lifemed white/black/glass constraint for PourLab.
+Historical revision recorded 21 October 2026. The user requested a new direction because PourLab and QuoteLens looked too similar. It replaced the prior Lifemed white/black/glass constraint and was later superseded by the play-first direction above. The sections below describe that earlier instrument presentation.
 
-## Actual reference inspection
+### Historical reference inspection
 
 The public Cosmos Explore page, a single search for “playful interface”, and the following two full element pages were inspected visually in a dedicated browser tab. The full artwork, not just a result title, informed the decisions. No account was created, and no login/quota gate was bypassed.
 
@@ -28,14 +28,14 @@ The public Cosmos Explore page, a single search for “playful interface”, and
 
 These two inspected references are static images. They establish composition, form and hierarchy, not measured motion timing, shipped software behavior, an endorsement or a reusable asset license. Cosmos is a reference gallery, not a license. No gallery imagery, model, video, code or designer private material is bundled; no designer was contacted and no asset/service was purchased. The CSS/SVG, controls and state-linked animation are original implementation.
 
-## Typography and runtime
+### Historical typography and runtime
 
 - [Barlow Condensed Bold, official Google Fonts source](https://github.com/google/fonts/blob/main/ofl/barlowcondensed/BarlowCondensed-Bold.ttf). Downloaded unmodified from the official Google Fonts raw distribution, 109,912 bytes. [Official OFL notice](https://raw.githubusercontent.com/google/fonts/main/ofl/barlowcondensed/OFL.txt) verified on this date: Copyright 2017 The Barlow Project Authors; SIL Open Font License 1.1 permits use, embedding and redistribution with its notice. Bundled as assets/BarlowCondensed-Bold.ttf and assets/BarlowCondensed-OFL.txt.
-- Existing local Manrope remains UI copy under its separate bundled assets/OFL.txt. No font runtime service is required.
+- Existing local Manrope supplied UI copy under its separate bundled assets/OFL.txt. No font runtime service was required.
 - The former Three.js renderer and glass fallback are not loaded by the current studio or guide. Their files and separate MIT/source notices remain historical artifacts. No third-party JavaScript runtime is active in the redesigned product.
 
-## Product fit and deliberate contrast
+### Historical product fit and deliberate contrast
 
-PourLab is a playful construction, manual-play and exact-search tool. Its central colored board and persistent mode rail should invite experimentation; the console separates editing from analysis. QuoteLens instead handles source-linked purchasing decisions. PourLab now has condensed display typography, a saturated stage, full-width board, rounded physical controls and state-linked game motion rather than the white glass hero and purchasing-workbench grammar.
+PourLab's central colored board and persistent mode rail were intended to invite experimentation; the console separated editing from analysis. QuoteLens handled source-linked purchasing decisions. This earlier PourLab revision used condensed display typography, a saturated stage, a full-width board, rounded physical controls and state-linked game motion rather than the preceding white glass hero and purchasing-workbench grammar.
 
 Actual browser interaction, reduced motion, keyboard, mobile and search-state checks must be evaluated on the integrated product; reference notes alone are not acceptance evidence.

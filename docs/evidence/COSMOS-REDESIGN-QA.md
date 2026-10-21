@@ -1,10 +1,12 @@
 # Cosmos puzzle-instrument redesign — browser checks
 
-21 October 2026. Internal Codex checks of the current redesign; not a player study, human usability acceptance or a complete accessibility certification. Solver, worker, portable format, storage keys and app state handlers are unchanged.
+> Historical record: the instrument presentation was superseded by the play-first revision on 21 October 2026. These captures and observations describe the earlier Cosmos interface. See [current clarity revision findings](CLARITY-REDESIGN-QA.md) for the shipped presentation.
+
+21 October 2026. Internal Codex checks of the Cosmos redesign; not a player study, human usability acceptance or a complete accessibility certification. That presentation change retained the solver, worker, portable format, storage keys and app state handlers.
 
 ## Render and interaction
 
-- Desktop and 390 px-wide studio, import/help dialogs and project guide inspected. The current dark-plum/condensed/rounded-color instrument is visually distinct from QuoteLens in the actual working screen. Root observed document scroll width=client width=390 px. Bottles wrap within the stage; controls stay accessible.
+- Desktop and 390 px-wide studio, import/help dialogs and project guide inspected. The dark-plum/condensed/rounded-color instrument was visually distinct from QuoteLens in that working screen. Root observed document scroll width=client width=390 px. Bottles wrapped within the stage; controls stayed accessible.
 - Motion toggle works and changes visible label, aria-pressed and the DOM preference. A live reduced-motion preference change turned motion off and disabled the toggle. Device/media overrides were reset after checking.
 - Mode and legal-pour feedback are brief and interruptible; no decorative glass hero or Three.js runtime is loaded. Versioned script URLs prevent retaining the old module from a prior visit.
 
@@ -18,6 +20,6 @@ A separate Codex agent independently exercised a capacity 3 level, a real 7-pour
 
 ## Evidence and checks
 
-- [Current first-visit desktop](cosmos-desktop.jpg), [mobile](cosmos-mobile.jpg), [completed custom replay](cosmos-solved-desktop.png). Captures show running local previews of the released source with fictional inputs.
+- [Cosmos first-visit desktop](cosmos-desktop.jpg), [mobile](cosmos-mobile.jpg), [completed custom replay](cosmos-solved-desktop.png). Captures show running local previews of that revision's source with fictional inputs.
 - Existing 8 solver/portable tests passed after the redesign. Syntax and whitespace checks passed.
 - Earlier redesign-* and motion files are historical captures of the superseded glass presentation. Retained third-party material keeps its separate license notices.
