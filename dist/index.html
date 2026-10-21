@@ -8,7 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cpath fill='%23000' d='M20 2C14 11 6 20 6 26a14 14 0 0028 0C34 20 26 11 20 2z'/%3E%3C/svg%3E">
   <link rel="preload" href="./assets/Manrope.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="stylesheet" href="./style.css"><script type="module" src="./app.js"></script>
-</head>
+<link rel="stylesheet" href="motion.css"><script type="module" src="motion3d.js"></script><script type="module" src="interface-motion.js"></script></head>
 <body>
   <a class="skip-link" href="#workbench">Skip to studio</a>
   <header class="site-header">
@@ -16,7 +16,7 @@
     <nav aria-label="Main"><a href="#workbench" class="nav-studio">Studio</a><a href="./about.html" class="nav-about">The project</a><button id="help-open" class="text-button">How it works</button><button id="library-open" class="nav-library">My levels <span id="saved-count" class="count">0</span></button></nav>
   </header>
   <main>
-    <section class="intro" aria-labelledby="headline">
+    <section class="intro" aria-labelledby="headline" data-motion-scene="pourlab">
       <img class="hero-art" src="./assets/glass-study.png" alt="" aria-hidden="true" width="1200" height="800" fetchpriority="high">
       <h1 id="headline">A playground<br>for clear thinking.</h1>
       <div class="intro-bottom"><p>Make your own puzzle.<br>Find your way through.</p><a class="primary hero-action" href="#workbench">Open studio <span aria-hidden="true">↗</span></a></div>

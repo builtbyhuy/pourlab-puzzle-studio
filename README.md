@@ -2,7 +2,7 @@
 
 [Use the online studio](https://pourlab-huy.hokhachuy1234.chatgpt.site) · [Guide & case study](https://pourlab-huy.hokhachuy1234.chatgpt.site/about.html) · [Detailed engineering case study](docs/CASE-STUDY.md)
 
-A usable water-sort puzzle workbench: build your own levels, play them, and inspect a shortest checked solution. Runs entirely in your browser with no account, backend, upload, tracking, build step or runtime dependency.
+A usable water-sort puzzle workbench: build your own levels, play them, and inspect a shortest checked solution. Runs entirely in your browser with no account, backend, upload, tracking or build step. The optional glass hero uses locally vendored Three.js; the solver has no package dependencies.
 
 This independent project was built with AI coding assistance. It uses **classical search**, not machine learning or reinforcement learning. The included study is synthetic; no player research, studio adoption, commercial results or human difficulty prediction is claimed.
 
@@ -15,6 +15,10 @@ The interface was redesigned on 21 October 2026 around a white gallery shell, ov
 [Mobile redesign](docs/evidence/redesign-mobile.jpg) · [Design decisions](docs/DESIGN.md) · [Artwork and font provenance](dist/assets/SOURCES.md)
 
 ## Try the whole workflow
+
+The current opening contains a live volumetric glass scene, not an animated image. Pause it with the visible control; reduced-motion visitors start with static artwork. Single legal pours and adjacent replay steps receive a short interruptible visual trace. Game state updates immediately; the animation does not simulate fluid physics. See [motion design and limitations](docs/MOTION-ENGINE.md) and [project-fit reference notes](docs/DESIGN-SOURCES.md).
+
+![Actual browser recording of the live glass](docs/evidence/motion.gif)
 
 1. Paint a slot in **Create** mode, from the bottom upward. Every color also has a number.
 2. Balance each used color to a multiple of the bottle capacity; add empty bottles if needed.
