@@ -1,5 +1,7 @@
 # PourLab
 
+[Use the online studio](https://pourlab-huy.hokhachuy1234.chatgpt.site) · [Guide & case study](https://pourlab-huy.hokhachuy1234.chatgpt.site/about.html) · [Detailed engineering case study](docs/case-study.md)
+
 A usable water-sort puzzle workbench: build your own levels, play them, and inspect a shortest checked solution. Runs entirely in your browser with no account, backend, upload, tracking, build step or runtime dependency.
 
 This independent project was built with AI coding assistance. It uses **classical search**, not machine learning or reinforcement learning. The included study is synthetic; no player research, studio adoption, commercial results or human difficulty prediction is claimed.

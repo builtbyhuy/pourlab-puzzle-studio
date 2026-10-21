@@ -10,6 +10,7 @@ Synthetic QA performed by the root agent through CUA against the local browser b
 - Tried an invalid manual pour and saw a meaningful error; made a legal pour and used **Undo** to restore the preceding board.
 - Set a one-state search budget and saw an unresolved/unknown result, rather than a false unsolvable claim.
 - Saved a custom level name and design, then reloaded; both persisted.
+- Copied the actual level URL and opened it in a separate tab; the custom name, capacity and bottle arrangement were restored from the link.
 - Checked a 390-pixel mobile viewport: document `scrollWidth = 390`, viewport `innerWidth = 390`. Viewport was reset afterward.
 
 ## Retained evidence
@@ -21,4 +22,4 @@ The search operates on the original level design, as labeled in the UI, rather t
 
 Core/source checks are separate: 8 tests passed, including exhaustive small layouts and 16 seeded new layouts against a separate labeled-state BFS oracle. Independent fixtures also checked legal replay, mutation boundaries, portable JSON/share roundtrips and hostile-input rejection.
 
-Public URL loading and worker availability, opening a copied share URL, actual edit/search cancellation and hostile-name DOM execution checks remain unrecorded in this note. The measured mobile viewport is not complete accessibility or device coverage.
+Public URL loading and worker availability, actual edit/search cancellation and hostile-name DOM execution checks remain unrecorded in this note. The measured mobile viewport is not complete accessibility or device coverage.
