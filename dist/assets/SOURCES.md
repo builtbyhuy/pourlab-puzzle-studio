@@ -1,6 +1,20 @@
 # Visual asset provenance
 
-Prepared on 2026-10-21 for the PourLab interface redesign.
+Updated on 2026-10-21. Current assets are listed first; earlier files below are retained historical material.
+
+## Current font — Rubik
+
+Unmodified official Google Fonts variable font: https://github.com/google/fonts/blob/main/ofl/rubik/Rubik%5Bwght%5D.ttf . Copyright 2015 The Rubik Project Authors, SIL Open Font License 1.1, verified from https://raw.githubusercontent.com/google/fonts/main/ofl/rubik/OFL.txt on 21 October 2026. Bundled files: `Rubik-Variable.ttf` (359,804 bytes) and complete `Rubik-OFL.txt`. SHA-256: `1b3a7437ba2af80e465e773ed60c5036d1ba6ace492d89046dbcf18fb31e4e88`. The file is embedded locally; no third-party font request or paid account is needed. Rubik replaces active Barlow Condensed and Manrope.
+
+## Current UI and evidence assets
+
+`social-preview.png` is the root agent's unaltered actual browser capture of the play-first interface, also saved as `docs/evidence/clarity-desktop.png`. It shows the synthetic first-visit three-color warm-up, not customer data or adoption.
+
+`checked-replay.png` was recaptured from the actual play-first interface on 21 October 2026, also saved as `docs/evidence/clarity-replay-2026-10-21.png`. It records the actual worker result and final 4/4 checked replay of capacity 2, `[[0,1],[1,2],[2,0],[],[]]`, imported through the UI. `reviewer-level.json` retains this portable synthetic layout. These are product evidence, not demand or player research.
+
+The drop mark, bottle geometry, miniature goal/rule diagrams and CSS controls are original. No artwork or source code from Quick, Draw!, Lichess or Cosmos is redistributed. Interaction and composition references are recorded in `docs/DESIGN-SOURCES.md`.
+
+## Historical resources — inactive in current pages
 
 ## Manrope.ttf
 
@@ -33,10 +47,10 @@ An original AI-generated decorative sculpture produced with the built-in image g
 
 `social-preview.jpg` was replaced for the Cosmos redesign on 21 October 2026. It is an unaltered 1280×720 CUA-controlled browser capture of the working local preview of the source being released. It shows a first-visit interface with empty local files or an explicitly fictional starting puzzle. It is not a generated mockup or evidence of customer use. The earlier glass-image sections above describe retained historical assets; the current app does not load the glass hero or Three.js. Retained third-party assets keep their separate license notices.
 
-## Current display font — Barlow Condensed Bold
+## Historical display font — Barlow Condensed Bold
 
 Unmodified font from the official Google Fonts repository: https://github.com/google/fonts/blob/main/ofl/barlowcondensed/BarlowCondensed-Bold.ttf . Official SIL Open Font License: https://raw.githubusercontent.com/google/fonts/main/ofl/barlowcondensed/OFL.txt . The complete notice is bundled as `BarlowCondensed-OFL.txt`. File: `BarlowCondensed-Bold.ttf`, 109912 bytes, SHA-256 `e476562ec9c1e16cf16475895b511f08c804f438cc9a9f80a44ea50a0eeb5b65`. Manrope remains the separately licensed UI font. No Cosmos artwork, code or commercial font was copied.
 
-## Reviewer case-study assets — 21 October 2026
+## Earlier reviewer case-study capture — superseded
 
-`checked-replay.png` is an unaltered copy of the actual current-instrument browser capture in `docs/evidence/cosmos-solved-desktop.png`. It records replay 4/4 of the explicitly synthetic level now available as `reviewer-level.json`: capacity 2, bottles `[[0,1],[1,2],[2,0],[],[]]`. These are project-owned product evidence and portable example data, not licensed gallery artwork or player/adoption evidence.
+The earlier `checked-replay.png` was copied from `docs/evidence/cosmos-solved-desktop.png`. That Cosmos screenshot remains historical evidence; the public case image has been replaced by the current capture described above. Both use the explicitly synthetic capacity-2 layout.

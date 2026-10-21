@@ -109,7 +109,7 @@ test('failed named save retains the last good library and reports failure until 
 
 test('draft quota failures keep one persistent warning without generating repeated toast timers', () => {
   const h = harness();
-  h.run('loadStorage()'); h.localStorage.failWrite = true;
+  h.run('loadStorage(); name = "Quota recovery fixture"'); h.localStorage.failWrite = true;
   h.run('storeDraft(); storeDraft(); storeDraft()');
   assert.equal(h.node('storage-warning').hidden, false);
   assert.match(h.node('storage-warning-text').textContent, /Draft recovery could not be saved.*export/);
@@ -117,7 +117,7 @@ test('draft quota failures keep one persistent warning without generating repeat
   assert.equal(h.data.has(RECOVERY), false);
   h.localStorage.failWrite = false; h.run('storeDraft()');
   assert.equal(h.node('storage-warning').hidden, true);
-  assert.equal(JSON.parse(h.data.get(RECOVERY)).name, 'Four-color study');
+  assert.equal(JSON.parse(h.data.get(RECOVERY)).name, 'Quota recovery fixture');
 });
 
 test('a changed library in another tab is never clobbered by a stale save or reset', () => {

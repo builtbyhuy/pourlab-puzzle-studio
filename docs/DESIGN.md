@@ -1,6 +1,19 @@
-# PourLab — a playful puzzle instrument
+# PourLab — a game workshop
 
-Current direction, 21 October 2026. The user explicitly rejected the near-identical visual systems of QuoteLens and PourLab. This supersedes the earlier Lifemed white/glass gallery direction.
+## Current play-first direction, 21 October 2026
+
+The user rejected the previous vague promise, dense editor opening, purple styling and type. This section supersedes the instrument direction below.
+
+- The first screen says **Build & solve water-sort puzzles** and shows a miniature single-color goal. The actual five-bottle, three-color board starts in Play for a fresh session. Make your own and Import a puzzle lead directly to real input paths. Find a solution is beside the board on desktop, before advanced search settings.
+- Warm sand `#f5f1e8` surrounds a forest `#184b3e` game board. Coral, blue and saffron identify the small starter puzzle. A lime active mode and legal-target outline are functional signals. Original bottle outlines and the goal/rule diagrams explain the task without opening a case study.
+- Uncondensed Rubik is locally hosted under SIL OFL 1.1: 400–500 for controls, 600–750 for headings, 850 for the compact wordmark. This replaces active Barlow Condensed/Manrope. Main instructions and solver helpers have priority over small secondary captions.
+- Play, Edit and Solution stay in a fixed rail. Exact algorithms and budgets live under Search settings. Edit exposes palette and balanced inventory; manual play exposes Undo and target hints. The shortest-route claim and unresolved limits still use the existing real worker and legal replay.
+- The active CSS is `playground.css`; older `instrument.css` is historical. Selection and legal-pour motion remain state-linked, interruptible and switchable, with OS reduced-motion respected. No active 3D runtime or continuous decorative animation is introduced.
+- On a narrow screen the goal becomes a compact inline diagram, five starter bottles fit in one row, and the solver follows the real board. Recovery notices and portable level controls remain usable. Browser verification is recorded separately; these choices do not prove user acceptance.
+
+## Superseded Cosmos instrument direction
+
+Historical direction, earlier on 21 October 2026. It superseded Lifemed and has itself been replaced by the play-first direction above.
 
 ## Composition and tokens
 

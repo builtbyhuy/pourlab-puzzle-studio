@@ -4,8 +4,8 @@ import { parsePortable, normalizeLevel, packLevel, encodeShare, decodeShare } fr
 const $ = id => document.getElementById(id);
 const COLORS = ['Coral', 'Sea glass', 'Blue', 'Honey', 'Lilac', 'Rose', 'Leaf', 'Caramel'];
 const STORE = 'pourlab-library-v1', RECOVERY = 'pourlab-draft-v1';
-const initial = generateLevel('little-chaos', 4, 4, 2);
-let draft = clone(initial), name = 'Four-color study', mode = 'edit', paint = 0, selected = null;
+const initial = { capacity: 3, bottles: [[0, 2, 0], [2, 3, 2], [3, 0, 3], [], []] };
+let draft = clone(initial), name = 'Three-color warm-up', mode = 'play', paint = 0, selected = null;
 let game = clone(draft), history = [], moves = [], frames = [], step = 0, timer = null;
 let worker = null, job = 0, revision = 0, dirty = false, currentId = null, noticeTimer;
 let saved = [], editorHistory = [], comparisons = {}, searchStatus = 'ready';
@@ -98,7 +98,7 @@ function resetProtectedLibrary() {
 function stopPlayback() { clearInterval(timer); timer = null; $('autoplay').textContent = 'Play solution'; }
 function stopSearch(announce = false) {
   if (worker) { worker.terminate(); worker = null; job++; searchStatus = 'ready'; if (announce) result('Stopped. Solvability is still unknown.', ''); }
-  $('cancel').hidden = true; $('solve').textContent = 'Analyze original level ↗';
+  $('cancel').hidden = true; $('solve').textContent = 'Find a solution →';
 }
 function invalidate() {
   stopSearch(); stopPlayback(); revision++; frames = []; moves = []; step = 0; comparisons = {}; selected = null;
@@ -183,13 +183,15 @@ function render() {
   $('capacity').value = draft.capacity; $('bottle-total').textContent = draft.bottles.length;
   $('add-bottle').disabled = draft.bottles.length >= 12;
   $('paint-tools').hidden = mode !== 'edit'; $('editor-footer').hidden = mode !== 'edit';
+  document.querySelector('.inventory-section').hidden = mode !== 'edit';
+  document.querySelector('.pour-rule').hidden = mode === 'edit';
   $('playback').hidden = mode !== 'review'; $('play-summary').hidden = mode !== 'play';
   $('undo').disabled = mode === 'play' ? !history.length : mode === 'edit' ? !editorHistory.length : true;
   $('reset').hidden = mode === 'edit';
-  $('reset').textContent = mode === 'review' ? 'First step' : 'Reset';
+  $('reset').textContent = mode === 'review' ? 'First step' : 'Start over';
   document.querySelectorAll('[data-mode]').forEach(button => { const on = button.dataset.mode === mode; button.classList.toggle('active', on); button.setAttribute('aria-pressed', on); });
-  $('stage-title').textContent = mode === 'edit' ? 'Build your arrangement.' : mode === 'play' ? isSolved(game) ? 'Order, restored.' : 'Your move.' : 'Every move, accounted for.';
-  $('stage-instruction').textContent = mode === 'edit' ? 'Choose a color, then paint a slot. Fill each bottle from bottom to top.' : mode === 'play' ? 'Choose a source bottle, then a matching or empty target. Dashed bottles are legal targets.' : 'A shortest legal solution. Follow each pour, at your own pace.';
+  $('stage-title').textContent = mode === 'edit' ? 'Make it yours.' : mode === 'play' ? isSolved(game) ? 'Every color, sorted.' : selected === null ? 'Pick a bottle. Make a pour.' : `Bottle ${selected + 1} is ready to pour.` : 'Your puzzle. The shortest way through.';
+  $('stage-instruction').textContent = mode === 'edit' ? 'Choose a color, then paint the slots from bottom to top. Each color must fill a whole bottle.' : mode === 'play' ? selected === null ? 'Aim for one color per full bottle. Start by moving a top color into an empty bottle.' : 'Choose an outlined bottle: the same top color, or an empty bottle with room.' : 'Each move has been checked. Step through the solution or watch it play.';
   if (mode === 'play') $('play-summary').textContent = isSolved(game) ? `Solved in ${history.length} ${history.length === 1 ? 'pour' : 'pours'}. Try the solver to compare with the shortest route.` : `${history.length} ${history.length === 1 ? 'pour' : 'pours'} so far. ${selected === null ? 'Select a source bottle.' : `Bottle ${selected + 1} selected. Choose a target or select it again to cancel.`}`;
   if (mode === 'review') {
     $('step-slider').max = moves.length; $('step-slider').value = step;
@@ -313,6 +315,7 @@ function importText(text) {
 loadStorage();
 try { const shared = decodeShare(location.hash); if (shared) { draft = clone(shared); name = shared.name; currentId = null; dirty = true; tell('Shared level opened. Save a copy to keep it.'); } } catch (error) { tell(error.message); }
 game = clone(draft);
+if (!validateLevel(draft).valid) mode = 'edit';
 COLORS.forEach((color, i) => { const button = el('button', 'swatch', i + 1); liquid(button, i); button.setAttribute('aria-label', `${color}, color ${i + 1}`); button.setAttribute('aria-pressed', i === paint); button.onclick = () => { paint = i; renderPaint(); renderBoard(); }; $('palette').append(button); });
 function renderPaint() { [...$('palette').children].forEach((button, i) => button.setAttribute('aria-pressed', paint === i)); $('eraser').setAttribute('aria-pressed', paint === null); }
 $('eraser').onclick = () => { paint = null; renderPaint(); renderBoard(); };
@@ -325,7 +328,7 @@ $('capacity').onchange = event => {
   if (draft.bottles.some(b => b.length > capacity)) { tell('Empty the upper slots first. Changing capacity will never silently remove colors.'); event.target.value = draft.capacity; return; }
   mutate(() => draft.capacity = capacity);
 };
-$('clear').onclick = () => { if (!draft.bottles.some(b => b.length) || !window.confirm('Clear all colors? You can undo this in Create mode.')) return; mutate(() => draft.bottles = draft.bottles.map(() => [])); };
+$('clear').onclick = () => { if (!draft.bottles.some(b => b.length) || !window.confirm('Clear all colors? You can undo this in Edit mode.')) return; mutate(() => draft.bottles = draft.bottles.map(() => [])); };
 $('undo').onclick = () => { if (mode === 'play' && history.length) { game = history.pop(); selected = null; render(); } else if (mode === 'edit' && editorHistory.length) { draft = editorHistory.pop(); changed(false); } };
 $('reset').onclick = () => { if (mode === 'review') { stopPlayback(); step = 0; } else if (mode === 'play') { game = clone(draft); history = []; selected = null; } else { tell('Reset applies to a play session. Use Undo to reverse your edits.'); } render(); };
 $('solve').onclick = solveDraft; $('cancel').onclick = () => { stopSearch(true); renderInventory(); };
@@ -345,6 +348,8 @@ $('storage-open-library').onclick = $('library-open').onclick;
 $('download-original-library').onclick = () => { try { if (downloadOriginalLibrary()) renderLibrary(); } catch { tell('The original backup could not be downloaded. The saved library is still protected.'); } };
 $('reset-library').onclick = () => { if (resetProtectedLibrary()) { render(); tell('Saved library reset. Your current level remains open and can be saved.'); } renderLibrary(); };
 $('portable-open').onclick = () => { $('import-error').textContent = ''; $('portable-dialog').showModal(); };
+$('import-entry').onclick = $('portable-open').onclick;
+$('create-entry').onclick = () => { setMode('edit'); $('workbench').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth', block: 'start' }); };
 $('help-open').onclick = () => $('help-dialog').showModal();
 document.querySelectorAll('[data-close]').forEach(button => button.onclick = () => button.closest('dialog').close());
 document.querySelectorAll('dialog').forEach(dialog => dialog.addEventListener('click', event => { if (event.target === dialog) { const r = dialog.getBoundingClientRect(); if (event.clientX < r.left || event.clientX > r.right || event.clientY < r.top || event.clientY > r.bottom) dialog.close(); } }));

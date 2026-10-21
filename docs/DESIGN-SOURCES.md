@@ -1,4 +1,19 @@
-# PourLab design sources — Cosmos instrument direction
+# PourLab design sources
+
+## Current play-first references — inspected 21 October 2026
+
+| Source actually inspected | Observed mechanism | Decision in PourLab |
+|---|---|---|
+| [Quick, Draw! — Google Creative Lab](https://quickdraw.withgoogle.com/) | A literal task, a clear action and a short instruction immediately before doing it. The actual Let's Draw action was opened; no drawing or user material was submitted. | Name water-sort making and solving directly, make the board usable immediately, explain the first pour in context. Do not copy the hand-drawn artwork or neural-network claims. |
+| [Lichess board editor](https://lichess.org/editor) | The rendered board dominates; secondary controls sit alongside and advanced position details do not need a separate marketing page. | Keep the real board dominant, place Find a solution next to it and progressively disclose algorithm/budget controls. No chess assets, code or logo reused. |
+
+The actual product pages were inspected visually in a browser, not inferred from gallery thumbnails. These are interaction/composition references, not reusable templates or evidence of PourLab demand. All diagrams and interface geometry in this revision are original CSS/SVG. No purchase, subscription, designer contact or gallery-artwork download was needed.
+
+### Current font resource and terms
+
+[Rubik on Google Fonts](https://fonts.google.com/specimen/Rubik), unmodified variable font [official source](https://github.com/google/fonts/blob/main/ofl/rubik/Rubik%5Bwght%5D.ttf), 359,804 bytes. [Official OFL notice](https://raw.githubusercontent.com/google/fonts/main/ofl/rubik/OFL.txt) read 21 October 2026: Copyright 2015 The Rubik Project Authors, SIL Open Font License 1.1. Embedding and redistribution are permitted with the notice; bundled as `dist/assets/Rubik-Variable.ttf` and `dist/assets/Rubik-OFL.txt`. The plain HTML/CSS stack needs no font service or account. Barlow/Manrope are no longer used by the active pages; earlier notices and assets remain historical.
+
+## Superseded Cosmos instrument direction
 
 Recorded 21 October 2026. The user requested a new direction because PourLab and QuoteLens looked too similar. This replaces the prior Lifemed white/black/glass constraint for PourLab.
 

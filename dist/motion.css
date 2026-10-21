@@ -1,10 +1,10 @@
 /* State-linked instrument feedback. The app never waits for an animation. */
 .bottle-glass{transition:transform 180ms cubic-bezier(.2,.8,.2,1),box-shadow 180ms}
 .bottle-play.selected .bottle-glass{transform:translateY(-12px) rotate(-3deg)}
-html[data-instrument-mode="play"] .stage-heading h2{color:var(--lemon)}
-html[data-instrument-mode="review"] .stage-heading h2{color:var(--c1)}
+html[data-instrument-mode="play"] .stage-heading h2{color:var(--cream)}
+html[data-instrument-mode="review"] .stage-heading h2{color:var(--lime)}
 .pour-trace{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:80;overflow:visible}
-.pour-trace path{fill:none;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 3px 7px #16072b66)}
+.pour-trace path{fill:none;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 3px 7px #092e2566)}
 html[data-interactive-motion="off"] *,html[data-interactive-motion="off"] *:before,html[data-interactive-motion="off"] *:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
 html[data-interactive-motion="off"] .bottle-play.selected .bottle-glass{transform:none}
 .intro-copy .motion-preference{display:flex;margin-top:11px;position:static;min-height:32px;width:fit-content}

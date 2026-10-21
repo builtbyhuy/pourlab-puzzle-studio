@@ -1,6 +1,6 @@
 # PourLab
 
-[Use the online studio](https://pourlab-huy.hokhachuy1234.chatgpt.site) · [Guide & case study](https://pourlab-huy.hokhachuy1234.chatgpt.site/about.html) · [Detailed engineering case study](docs/CASE-STUDY.md)
+[Use the online studio](https://builtbyhuy.github.io/pourlab-puzzle-studio/) · [Guide & case study](https://builtbyhuy.github.io/pourlab-puzzle-studio/about.html) · [Detailed engineering case study](docs/CASE-STUDY.md)
 
 A usable water-sort puzzle workbench: build your own levels, play them, and inspect a shortest checked solution. The application runs entirely in your browser with no account, application backend, level upload, analytics SDK or build step. It uses native browser APIs and locally hosted open-source fonts, with no third-party JavaScript runtime dependency in its application code. The hosting provider still receives page/resource requests and can add security checks.
 
@@ -8,11 +8,11 @@ This independent project was built with AI coding assistance. It uses **classica
 
 ## The studio
 
-The current interface is a game-first puzzle instrument: a deep violet stage, Barlow Condensed display type, vivid numbered bottles, physical rounded mode controls and a lilac tool console. The playable board is the opening experience. This direction supersedes the earlier white/glass gallery design and deliberately differs from the editorial purchasing workspace in QuoteLens. [Current source-to-decision notes](docs/DESIGN-SOURCES.md) record the two Cosmos references actually inspected.
+The interface connects creating a water-sort level, trying legal moves and reviewing a checked solution. See [current design decisions](docs/DESIGN.md) for the opening experience, layout, typography and interaction choices. The [earlier Cosmos source notes](docs/DESIGN-SOURCES.md) and corresponding screenshots record that earlier instrument presentation.
 
-![PourLab redesigned desktop studio](docs/evidence/cosmos-desktop.jpg)
+![PourLab current puzzle studio](docs/evidence/clarity-desktop.png)
 
-[Mobile redesign](docs/evidence/cosmos-mobile.jpg) · [Current redesign browser checks](docs/evidence/COSMOS-REDESIGN-QA.md) · [Design decisions](docs/DESIGN.md) · [Artwork and font provenance](dist/assets/SOURCES.md)
+[Current mobile interface](docs/evidence/clarity-mobile.png) · [Earlier Cosmos redesign checks](docs/evidence/COSMOS-REDESIGN-QA.md) · [Current design decisions](docs/DESIGN.md) · [Artwork and font provenance](dist/assets/SOURCES.md)
 
 ## Start with a complete loop
 
@@ -24,11 +24,11 @@ For the engineering comparison, [40 fixed configurations across 34 layouts](docs
 
 Short mode transitions, source selection and an interruptible trace explain actual legal pours and adjacent replay steps. Game state updates immediately. The visible Motion control disables interactive feedback, and reduced-motion visitors start with it off. See [current design decisions](docs/DESIGN.md).
 
-1. Paint a slot in **Create** mode, from the bottom upward. Every color also has a number.
+1. Start with the playable example, or choose **Make your own** and paint a slot in **Edit** mode, from the bottom upward. Every color also has a number.
 2. Balance each used color to a multiple of the bottle capacity; add empty bottles if needed.
 3. Choose **Play**, select a source bottle, then a legal target. Use Undo or Reset freely.
-4. Choose **Analyze original level**. Inspect the legal replay with Previous, Next, the slider or playback.
-5. Save a named level, reopen it from **My levels**, export a JSON backup, or copy a link containing the level.
+4. Choose **Find a solution**. Inspect the legal replay with Previous, Next, the slider or playback.
+5. Save a named level, reopen it from **My puzzles**, export a JSON backup, or copy a link containing the level.
 
 You can create 2–12 bottles with capacity 2–6 and up to eight colors. Palette slots, bottle removal, capacity changes, erasing, editor undo and blank levels work on user-created content. Deterministic shuffling uses the visible seed, selected color count and current capacity. Its balanced inventory does **not** guarantee solvability; the search checks that separately.
 
@@ -102,7 +102,13 @@ A* uses an admissible color-segment heuristic. BFS is an exact shortest-path bas
 
 Named levels and a recovery draft use `localStorage` in the current browser origin. They do not sync across devices and may be removed by the browser. The app reports failed named saves, provides JSON backups and confirms deletion. A copied URL includes the level and its name in the hash; anyone with the link can open it. This app sends no level data to a server. Shared-link names and imported strings are rendered through text nodes, never HTML.
 
-An unreadable saved library is protected against further writes. **My levels** offers its exact original raw text for download; resetting requires requesting that backup and a separate confirmation. A failed reset keeps the original. Draft-write failures remain visible with an export action. A changed-library check also refuses stale writes after another tab has updated the library; it is a guard, not an atomic cross-tab transaction.
+### Moving from the earlier demo address
+
+The current demo address is `https://builtbyhuy.github.io/pourlab-puzzle-studio/`. If you used the [earlier hosted demo](https://pourlab-huy.hokhachuy1234.chatgpt.site/), open it in the browser where you saved your levels, export a library JSON backup from **My levels**, then import that backup at the current address. Export an unsaved current level separately and check the imported levels before removing old copies. Browser storage is tied to its origin; changing the address does not move or erase the old data. There is no automatic redirect or background transfer. Existing shared links continue to target their original host.
+
+The [Pages workflow](.github/workflows/pages.yml) runs the existing regression suite and fixed solver corpus before publishing only `dist/`. It uses GitHub's built-in workflow token and short-lived Pages identity; no separate deployment secret is required. Earlier browser evidence retains its original address and scope.
+
+An unreadable saved library is protected against further writes. **My puzzles** offers its exact original raw text for download; resetting requires requesting that backup and a separate confirmation. A failed reset keeps the original. Draft-write failures remain visible with an export action. A changed-library check also refuses stale writes after another tab has updated the library; it is a guard, not an atomic cross-tab transaction.
 
 ## Architecture
 

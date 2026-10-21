@@ -51,13 +51,13 @@ function drawPour(move, after) {
   const lift = Math.min(65, Math.max(28, Math.abs(end - start) * .18));
   path.setAttribute('d', `M ${start} ${y1} C ${start} ${y1-lift}, ${end} ${y2-lift}, ${end} ${y2}`);
   const layer = target.glass.querySelector(`[data-color="${move.color}"]`);
-  path.setAttribute('stroke', getComputedStyle(layer).getPropertyValue('--liquid').trim() || '#a8b8eb');
+  path.setAttribute('stroke', getComputedStyle(layer).getPropertyValue('--liquid').trim() || '#80c5ed');
   path.setAttribute('stroke-width', '7');
   svg.append(path); document.body.append(svg); active = svg;
   const length = path.getTotalLength(); path.style.strokeDasharray = length;
   animations.push(path.animate([{ strokeDashoffset: length, opacity: 0 }, { strokeDashoffset: 0, opacity: 1, offset: .45 }, { strokeDashoffset: -length, opacity: 0 }], { duration: 650, easing: 'cubic-bezier(.25,.7,.3,1)' }));
   animations.push(source.glass.animate([{ transform: 'translateY(-10px) rotate(0deg)' }, { transform: `translateY(-18px) rotate(${end > start ? 8 : -8}deg)`, offset: .35 }, { transform: 'none' }], { duration: 520, easing: 'cubic-bezier(.2,.8,.2,1)' }));
-  animations.push(target.glass.animate([{ boxShadow: '0 0 0 3px #a8b8eb66' }, { boxShadow: '0 0 0 0px #a8b8eb00' }], { duration: 650 }));
+  animations.push(target.glass.animate([{ boxShadow: '0 0 0 3px #e5f39288' }, { boxShadow: '0 0 0 0px #e5f39200' }], { duration: 650 }));
   animations[0].finished.then(() => { if (active === svg) cancel(); }).catch(() => {});
 }
 if (board) {
