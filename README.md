@@ -118,7 +118,7 @@ An unreadable saved library is protected against further writes. **My puzzles** 
 | `dist/worker.js` | Isolated search protocol and progress messages |
 | `dist/portable.js` | Strict JSON and bounded URL-hash serialization |
 | `dist/app.js` | DOM interaction, history, storage, search cancellation, replay controls |
-| `dist/index.html`, `style.css`, `instrument.css`, `motion.css` | Native controls, responsive puzzle instrument and state-linked feedback |
+| `dist/index.html`, `style.css`, `playground.css`, `motion.css` | Native controls, responsive playable board and state-linked feedback |
 | `tests/` | Independent oracle and rule/portability checks |
 
 The app links to the public [project guide](dist/about.html). See [the case study](docs/CASE-STUDY.md) for tradeoffs, proof boundaries and next experiments.
