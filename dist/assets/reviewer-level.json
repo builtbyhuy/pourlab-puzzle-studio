@@ -1,1 +1,25 @@
-{"format":"pourlab","version":1,"name":"Three-color review","capacity":2,"bottles":[[0,1],[1,2],[2,0],[],[]]}
+{
+  "format": "pourlab",
+  "version": 1,
+  "name": "Independent integration — paired runs",
+  "capacity": 3,
+  "bottles": [
+    [
+      0,
+      1,
+      1
+    ],
+    [
+      1,
+      2,
+      2
+    ],
+    [
+      2,
+      0,
+      0
+    ],
+    [],
+    []
+  ]
+}

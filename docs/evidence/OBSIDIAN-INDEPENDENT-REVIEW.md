@@ -1,0 +1,29 @@
+# Independent browser review — selected PourLab integration
+
+21 October 2026, completed by 10:53 UTC. Actual candidate: `http://localhost:4392/` in reviewer-owned Chrome tabs, a separate origin from root's `127.0.0.1` session. Only this origin's synthetic draft/play state changed. No source, deployment, root tab, existing user record or external service was edited.
+
+Scope deliberately complements root: root owns QuoteLens's nine-row GBP 42.00 / revision loop and PourLab's novel five-tube worker/replay path. This review independently exercises the renderer boundary, dense editing/play, keyboard, phone layout, real movement, fallback and retry. It does not claim root's checks as independently repeated here.
+
+## Results on actual candidate
+
+| Check | Observed result and evidence |
+|---|---|
+| Full supported rendering range | Imported `fixtures/pl-dense-level.json`: 12 bottles, capacity 6, all 8 numbered colors, 48 units. Play showed two rows of six on desktop; all 12 target rectangles stayed inside the board. Minimum observed desktop target width 65.42px. |
+| Dense Edit after 3D | **Found and repaired during review.** Originally, first five editor wrappers inherited old 3D projection coordinates and overlapped other bottles. After owner repair and actual reload, 12 wrappers / 72 editable slots / **0 projected inline wrappers**; clean editor layout. Current evidence: `evidence/pl-dense-editor-reverified.{png,json}`. Earlier `pl-dense-editor-blocker.*` records the superseded defect. |
+| Keyboard editing and validation | Enter on bottle 12's bottom slot painted one Coral unit, retained focus on that same slot, showed inventory 7/6 and disabled Play/search. Undo restored the balanced 48-unit layout. No keyboard-only inaccessible twelfth bottle or hidden six-bottle cap was observed. |
+| Dense phone layout | Actual 390×844 viewport: document/client width 375px including the ordinary scrollbar distinction; **no horizontal overflow**. Board width 335px, height 731px; all 12 targets inside its four-row layout, minimum width 58.25px, minimum height 160.95px. The long board scrolls vertically. These numbers describe this viewport, not every mobile device. |
+| Legal dense play | In both 3D/mobile and renderer-unavailable 2D, bottle 8→12 transferred all six Caramel units; source became empty, destination full, Undo was available. Keyboard Enter also completed the reverse transfer while reduced motion was active. |
+| Genuine rendered motion | Captured **21 actual screencast frames over about 0.72 seconds** during a legal mobile 8→12 move. Inspected frames 00, 10 and 20: filled source, lifted/tilted 3D source, then empty source/full target. `evidence/pl-pour-frames.json` preserves frame timestamps; `pl-pour-frame-{00,10,20}.png` show those stages. This is live geometry feedback, not a moving still, fluid-physics simulation or performance benchmark. |
+| Motion controls | Tab-scoped OS reduced-motion emulation set the actual control to disabled **Motion off** and document motion state to off while keyboard play remained functional. Restoring the media preference re-enabled the control; manual on/off worked. With manual Motion off, a legal reverse move still updated the 3D state correctly. Evidence: `evidence/pl-mobile-motion-off.png`, `pl-mobile-current.txt`. |
+| 3D loading failure | Blocked only this tab's local `stage3d.js` request using documented CDP Network controls, then reloaded. Candidate showed **3D unavailable · all controls work in 2D**, 12 numbered bottles and working 8→12/Undo. `evidence/pl-module-fallback-functional.{png,txt}`. No browser security bypass or public endpoint failure was introduced. |
+| Explicit retry | **Found and repaired during review.** Initially the same failed module URL remained cached and Retry 3D returned unavailable after network restoration. Owner added fresh URLs for deliberate retries. Repeated the initial block on a fresh page, removed blocking, pressed Retry 3D and reached **Live 3D** without reload, preserving the 12-tube draft. Current evidence: `evidence/pl-module-retry-resolved.{png,txt}`; `pl-retry-module-failure.*` is historical defect evidence. |
+
+## Source and evidence boundaries
+
+The runtime was an uncommitted integration candidate based on PourLab `19571b3b5822a762320a1cf1681484b14d0be2d5`, with repairs arriving during review and explicitly reloaded/rechecked. The source files present at review end are fingerprinted in `evidence/pl-reviewed-source-hashes.json`. The solver hash still matches the independent fixture preparation (`89fd1a967483592762320f1390f9863b06762e2cd96587c22675d530aca08cfd`). Root must tie final release evidence to its actual frozen commit; these observations do not establish deployment by themselves.
+
+Fallback was exercised by a **renderer module fetch failure**, not by disabling the GPU or triggering an actual WebGL constructor/context-loss failure. Those GPU-specific handlers were inspected in source but not exercised in this browser pass. Do not broaden the failure claim beyond the observed case. This review also does not independently repeat library corruption/quota recovery, all worker/corpus tests, public hosting, user acceptance or complete accessibility/performance coverage.
+
+All tab-scoped URL blocking and cache overrides were removed, Network monitoring disabled, screencast stopped, reduced-motion emulation cleared and temporary viewport override reset. No background capture/process remains from this review. Synthetic localhost drafts remain recoverable on that test origin; public/original-origin user storage was untouched.
+
+**Remaining must-fix found by this reviewer: none after the two reverified repairs.** Final source freeze, existing checks, root's complete task/recovery checks and public release verification remain root-owned release gates.

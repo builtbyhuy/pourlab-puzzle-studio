@@ -1,5 +1,6 @@
 import { clone, validateLevel, isSolved, applyMove, pourAmount, replay, generateLevel } from './solver.js';
 import { parsePortable, normalizeLevel, packLevel, encodeShare, decodeShare } from './portable.js';
+import { createBoardPresenter } from './interface-motion.js';
 
 const $ = id => document.getElementById(id);
 const COLORS = ['Coral', 'Sea glass', 'Blue', 'Honey', 'Lilac', 'Rose', 'Leaf', 'Caramel'];
@@ -96,6 +97,7 @@ function resetProtectedLibrary() {
   }
 }
 function stopPlayback() { clearInterval(timer); timer = null; $('autoplay').textContent = 'Play solution'; }
+let presentation = null;
 function stopSearch(announce = false) {
   if (worker) { worker.terminate(); worker = null; job++; searchStatus = 'ready'; if (announce) result('Stopped. Solvability is still unknown.', ''); }
   $('cancel').hidden = true; $('solve').textContent = 'Find a solution →';
@@ -128,6 +130,7 @@ function renderBoard() {
   const level = currentLevel();
   level.bottles.forEach((bottle, index) => {
     const wrap = el('div', 'bottle-wrap'), glass = el('div', 'bottle-glass');
+    if (mode === 'review') { wrap.setAttribute('role', 'img'); wrap.setAttribute('aria-label', `Bottle ${index + 1}: ${bottle.length ? bottle.map(c => `${COLORS[c]} ${c + 1}`).join(', ') + ', bottom to top' : 'empty'}`); }
     for (let slot = 0; slot < level.capacity; slot++) {
       const color = bottle[slot];
       const layer = el(mode === 'edit' ? 'button' : 'span', `slot${color === undefined ? ' empty' : ''}`, color === undefined ? '–' : color + 1);
@@ -160,6 +163,7 @@ function renderBoard() {
     const selector = focusSlot !== undefined ? `[data-bottle="${focusBottle}"][data-slot="${focusSlot}"]` : `[data-bottle="${focusBottle}"]`;
     board.querySelector(selector)?.focus({ preventScroll: true });
   }
+  presentation?.update({ level: clone(level), mode, selected, revision, pours: history.length, step });
 }
 
 function renderInventory() {
@@ -312,6 +316,7 @@ function importText(text) {
   } catch (error) { $('import-error').textContent = error.message; }
 }
 
+presentation = createBoardPresenter();
 loadStorage();
 try { const shared = decodeShare(location.hash); if (shared) { draft = clone(shared); name = shared.name; currentId = null; dirty = true; tell('Shared level opened. Save a copy to keep it.'); } } catch (error) { tell(error.message); }
 game = clone(draft);

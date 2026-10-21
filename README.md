@@ -2,27 +2,27 @@
 
 [Use the online studio](https://builtbyhuy.github.io/pourlab-puzzle-studio/) · [Guide & case study](https://builtbyhuy.github.io/pourlab-puzzle-studio/about.html) · [Detailed engineering case study](docs/CASE-STUDY.md)
 
-A usable water-sort puzzle workbench: build your own levels, play them, and inspect a shortest checked solution. The application runs entirely in your browser with no account, application backend, level upload, analytics SDK or build step. It uses native browser APIs and locally hosted open-source fonts, with no third-party JavaScript runtime dependency in its application code. The hosting provider still receives page/resource requests and can add security checks.
+A usable water-sort puzzle workbench: build your own levels, play them, and inspect a shortest checked solution. The application runs entirely in your browser with no account, application backend, level upload, analytics SDK or build step. Native controls and the real search worker are supplemented by a locally hosted Three.js 0.180.0 stage and open-source fonts. Editing and an explicit/failure fallback use the complete numbered 2D board. The hosting provider still receives page/resource requests and can add security checks.
 
 This independent project was built with AI coding assistance. It uses **classical search**, not machine learning or reinforcement learning. The included study is synthetic; no player research, studio adoption, commercial results or human difficulty prediction is claimed.
 
 ## The studio
 
-The interface connects creating a water-sort level, trying legal moves and reviewing a checked solution. See [current design decisions](docs/DESIGN.md) for the opening experience, layout, typography and interaction choices. The [earlier Cosmos source notes](docs/DESIGN-SOURCES.md#superseded-cosmos-instrument-direction) and corresponding screenshots record that earlier instrument presentation.
+The user selected the **OBSIDIAN** direction after trying isolated alternatives. A wide live 3D board, compact display typography and a bottom action dock connect creating a water-sort level, trying legal moves and reviewing a checked solution. See [current design decisions](docs/DESIGN.md) and [inspected Behance sources](docs/DESIGN-SOURCES.md). Earlier play-first, Cosmos and glass screenshots retain their historical scope.
 
-![PourLab current puzzle studio](docs/evidence/clarity-desktop.png)
+![PourLab current puzzle studio](docs/evidence/selected-desktop.png)
 
-[Current mobile interface](docs/evidence/clarity-mobile.png) · [Earlier Cosmos redesign checks](docs/evidence/COSMOS-REDESIGN-QA.md) · [Current design decisions](docs/DESIGN.md) · [Artwork and font provenance](dist/assets/SOURCES.md)
+[Current mobile interface](docs/evidence/selected-mobile.png) · [Selected-design browser checks](docs/evidence/SELECTED-DESIGN-QA.md) · [Current design decisions](docs/DESIGN.md) · [Artwork, runtime and font provenance](dist/assets/SOURCES.md)
 
 ## Start with a complete loop
 
-Import the [three-color reviewer level](dist/assets/reviewer-level.json), try a legal move and Undo, then analyze its original arrangement. The recorded browser run reaches four shortest checked pours and replay 4/4. A one-state budget must remain unresolved; an unbalanced edit must disable Play/search until repaired. [Current replay](docs/evidence/clarity-replay-2026-10-21.png) · [Recovery repair](docs/evidence/STORAGE-RECOVERY-QA.md).
+Import the [capacity-3, three-color reviewer level](dist/assets/reviewer-level.json), `[[0,1,1],[1,2,2],[2,0,0],[],[]]`, try a legal move and Undo, then analyze its original arrangement. The recorded browser run reaches four shortest checked pours, 17 A* states and replay 4/4. Search still starts from the original design after manual play. A one-state budget must remain unresolved; an unbalanced edit must disable Play/search until repaired. [Current replay](docs/evidence/selected-replay.png) · [Current browser scope](docs/evidence/SELECTED-DESIGN-QA.md) · [Recovery repair](docs/evidence/STORAGE-RECOVERY-QA.md).
 
 For the engineering comparison, [40 fixed configurations across 34 layouts](docs/SOLVER-EVALUATION.md) run both A* and BFS, check every solved path independently and expose the effect of search budgets. Run `node scripts/evaluate-solver.mjs --check`; independent optimum coverage and timing limits are explicit in the report.
 
 ## Try the whole workflow
 
-Short mode transitions, source selection and an interruptible trace explain actual legal pours and adjacent replay steps. Game state updates immediately. The visible Motion control disables interactive feedback, and reduced-motion visitors start with it off. See [current design decisions](docs/DESIGN.md).
+The live stage renders original tube geometry, numbered liquid units and checked legal-pour transitions. This is stylized geometry animation, not fluid simulation. Game state updates immediately; Undo, edits, stale solutions and nonadjacent replay jumps settle without an invented pour. Native projected buttons preserve keyboard control. **Motion off** skips transitions; system reduced-motion starts with motion off. **2D view** remains available, and a failed 3D load keeps the complete numbered board usable with a bounded explicit retry. See [current design decisions](docs/DESIGN.md).
 
 1. Start with the playable example, or choose **Make your own** and paint a slot in **Edit** mode, from the bottom upward. Every color also has a number.
 2. Balance each used color to a multiple of the bottle capacity; add empty bottles if needed.
@@ -54,9 +54,9 @@ node --test tests/*.test.js
 
 Tests compare both exact solvers with a separately implemented **labeled-bottle BFS oracle**, including exhaustive small arrangements and deterministic novel levels. They also check maximal-pour rules, immutable transitions, legal replay, conservation of inventory, strict input boundaries, unresolved budgets and portable JSON/link roundtrips. Browser rendering, actual worker startup, storage and keyboard flows require browser acceptance in addition to these unit tests.
 
-The current suite has **17 checks**: eight rule/portability checks and nine storage regressions executing the production storage functions with controlled DOM, storage and confirmation boundaries. The latter protect unreadable original libraries, failed reads/writes, reset confirmation and stale-tab changes. [Recovery fix and actual-browser evidence](docs/evidence/STORAGE-RECOVERY-QA.md).
+The current suite has **20 checks**: eight rule/portability checks, nine storage regressions executing the production storage functions with controlled DOM, storage and confirmation boundaries, and three presentation regressions. Storage checks protect unreadable original libraries, failed reads/writes, reset confirmation and stale-tab changes. Presentation checks cover supported layout counts, gating motion to real adjacent legal moves, failure/retry URLs and removal of old 3D projections when returning to Edit. [Recovery fix and actual-browser evidence](docs/evidence/STORAGE-RECOVERY-QA.md).
 
-Current browser evidence covers the four-pour loop above, illegal play/Undo, edit invalidation, named save/reload and mobile rendering. The recovery follow-through also verified exact original backup bytes, visible storage failure feedback and a separate newly imported level saved, reloaded and solved. The [recorded scopes](docs/evidence/STORAGE-RECOVERY-QA.md) remain distinct from automated checks and human usability acceptance.
+Current browser evidence covers the four-pour loop above, illegal play/Undo, edit invalidation, named save/reload/export/share, manual and system reduced-motion, and a 12-bottle/capacity-6/eight-color board in both 3D and 2D. A deliberately blocked renderer module fell back to 2D; restoring access and choosing Retry 3D recovered without a reload or lost level. The [selected-design record](docs/evidence/SELECTED-DESIGN-QA.md) distinguishes local execution from publication and usability acceptance. The earlier [recovery follow-through](docs/evidence/STORAGE-RECOVERY-QA.md) also verified exact original backup bytes, visible storage failure feedback and a separate newly imported level saved, reloaded and solved. It is not a new real browser-quota test for this redesign.
 
 <details>
 <summary>Earlier browser and motion evidence</summary>
@@ -69,7 +69,7 @@ The worker/replay images above record the original release. The current visual d
 
 The earlier white/glass interface was also checked in a real browser on 21 October 2026: custom JSON import, a seven-pour A* result, keyboard replay to 7/7, a legal manual pour and Undo, erase/repair inventory validation, named save and the library dialog. Both the studio and case-study page were inspected at a 390px viewport with no horizontal document overflow. All eight core/portability tests passed. These historical observations are not acceptance of the later instrument redesign, a user study or a complete accessibility audit.
 
-[Historical glass-hero recording](docs/evidence/motion.gif) and retained Three.js files describe the superseded presentation. They are not loaded by the current studio; current feedback does not simulate fluid physics.
+[Historical glass-hero recording](docs/evidence/motion.gif) records the superseded decorative presentation. Its old hero module and glass image are inactive. The current stage instead uses the retained MIT-licensed Three.js files to render the actual puzzle through `stage3d.js`; neither presentation simulates fluid physics.
 
 </details>
 
@@ -118,9 +118,10 @@ An unreadable saved library is protected against further writes. **My puzzles** 
 | `dist/worker.js` | Isolated search protocol and progress messages |
 | `dist/portable.js` | Strict JSON and bounded URL-hash serialization |
 | `dist/app.js` | DOM interaction, history, storage, search cancellation, replay controls |
-| `dist/interface-motion.js` | Interruptible selection, mode and legal-pour feedback; motion preference |
-| `dist/index.html`, `style.css`, `playground.css`, `motion.css` | Native controls, responsive playable board and state-linked feedback |
-| `tests/` | Independent oracle and rule/portability checks |
+| `dist/interface-motion.js` | State-copy presentation adapter, checked move gating, 3D/2D lifecycle and motion preference |
+| `dist/stage3d.js`, `scene-layout.js` | Original Three.js geometry, projected native targets and responsive 2–12-bottle layout |
+| `dist/index.html`, `style.css`, `obsidian.css`, `motion.css` | Native controls, responsive studio and state-linked presentation; `playground.css` is historical |
+| `tests/` | Independent oracle, rule/portability, production-storage and presentation regressions |
 
 The app links to the public [project guide](dist/about.html). See [the case study](docs/CASE-STUDY.md) for tradeoffs, proof boundaries and next experiments.
 
